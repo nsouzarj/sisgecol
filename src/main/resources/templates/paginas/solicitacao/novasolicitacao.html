@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Nova Solicitação</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="/webjars/bootstrap/4.4.1/css/bootstrap.min.css">
+
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css"
+		rel="stylesheet" />
+
+	<!-- Popper JS -->
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css" />
+
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
+
+	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css" />
+
+	<link rel="stylesheet"
+		href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" />
+
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+
+
+	<style>
+		#teste {
+			color: blue;
+			background-color: silver;
+			border: solid;
+
+
+		}
+
+		#id {
+			font: bold;
+			font-family: sans-serif;
+			background-color: silver;
+			border: solid;
+		}
+
+
+		#nv {
+			font: bold;
+			text-align: center;
+			font-family: sans-serif;
+			background-color: silver;
+			border: solid coral;
+
+		}
+
+		#gp1 {
+			position: relative;
+		}
+
+		.body {
+			background-color: white;
+		}
+	</style>
+
+
+	<script>
+		function escondeTipoSoli1(valor1,valor2) {
+			escondetiposoli(valor1, valor2);
+		}
+
+		function copia() {
+			copiavalor("#sel2", "#nome");
+		}
+	</script>
+
+</head>
+
+<body class="body">
+	<div class="card-header bg-dark">
+		<h5  style="color: white;" id="nv">NOVA SOLICITAÇÃO</h5>
+	</div>
+	<div class="card-body col-lg">
+
+
+		<form class="row" id="form1" lang="pt-BR">
+			<div class="form-group col-sm-6">
+				<label class="mr-sm-2">Número do Processo:</label> <Label
+					class="mr-sm-2">28237827827872873872837</Label>
+			</div>
+
+			<div class="form-group col-sm-6">
+				<label class="mr-sm-2">Altor:</label> <Label class="mr-sm-2">NELSON
+					SEIXAS DE SOUZA</Label>
+			</div>
+			<div class="form-group col-sm-6">
+				<label class="mr-sm-2">Réu:</label> <Label class="mr-sm-2">CAIXA
+					ECONOMICA FEDERAL</Label>
+			</div>
+			<div class="form-group col-sm-6">
+				<label class="mr-sm-2">Assunto:</label> <Label class="mr-sm-2">DECLARATÓRIA/SUMÀRISSIMO</Label>
+			</div>
+			<div class="form-group col-sm-6">
+				<label class="mr-sm-2">Cadastro:</label> <Label class="mr-sm-2">JUIZADO
+					ESPECIAL CÍVEL, TJRS - TRIBUNAL DE JUSTIÇA DO ESTADO DO RIO GRANDE
+					DO SUL , TERRA DE AREIA - RS</Label>
+			</div>
+
+			<div class="form-group  col-sm-6 ">
+				<label>Data da Elaboração:</label>
+				<input type="text" class="form-control col-sm-6" id="datainicial" name="datainicial">
+
+			</div>
+
+			<div class="form-group col-sm-6">
+				<label>Banca:</label> <select class="form-control col-sm-6" id="sel1">
+					<option value="0">SELECIONE UMA BANCA.</option>
+					<option th:object="${bancas}" th:each="banca: ${bancas}" th:value=${banca.idbanca}
+						th:text=${banca.banca}></option>
+				</select>
+			</div>
+			<div class="form-group col-sm-6">
+				<label>Estado:</label> <select class="form-control col-sm-6" id="estadouf" name="estadouf">
+					<option value="0">SELECIONE O ESTADO.</option>
+					<option th:object="${estados}" th:each="uf: ${estados}" th:value=${uf.iduf} th:text=${uf.nome}>
+					</option>
+				</select>
+			</div>
+			<div class="form-group col-sm-6">
+				<label>Comarca:</label>
+				<select class="form-control col-sm-6" id="comarca">
+					<option value="0">SELECIONE UMA COMARCA.</option>
+					<option th:object="${comarcas}" th:each="com: ${comarcas}" name="comarca" th:value=${com.idcomarca}
+						th:text="${com.nome +' - '+com.uf?.nome }"></option>
+
+				</select>
+			</div>
+			<div class="form-group col-sm-6">
+				<label>Orgão:</label> <select class="form-control col-sm-6 col-sx-6">
+					<option value="0">SELECIONE O ORGÃO.</option>
+					<option th:object="${orgaos}" th:each="org: ${orgaos}" name="orgao" th:value=${org.idorgao}
+						th:text="${org.descricao}"></option>
+				</select>
+			</div>
+
+			<div class="form-group col-sm-6">
+				<label class="mr-sm-2" for="exampleInputEmail1">Número do
+					Orgão:</label> <input type="number" class="form-control col-sm-6" name="numeroorgao" value="0"
+					required>
+			</div>
+
+
+
+			<div class="form-group col-sm-6">
+				<label>Selecione o Correspondente:</label> <select class="form-control col-sm-6" id="corr">
+					<option value="0">SELECIONE O CORRESPONDENTE.</option>
+					<option th:object="${correspondente}" th:each="corr: ${correspondente}" name="correspondente"
+						th:value=${corr.idcorrespondente} th:text="${corr.nome}"></option>
+				</select>
+			</div>
+
+			<div class="form-group col-sm-6">
+				<label>Selecione o E-Email:</label> <select class="form-control col-sm-6" id="emailcorr">
+					<option value="0">SELECIONE O E-EMAIL.</option>
+					<option th:object="${email}" th:each="em: ${email}" aria-placeholder="Email do corr"
+						name="emailcorrespondente" th:value=${em.idemail} th:text="${em.email}"></option>
+				</select>
+			</div>
+
+			<div class="form-group col-sm-6">
+				<label>Selecione o Tipo de Solicitação:</label> 
+				<select class="form-control col-sm-6" id="tiposolic" onChange="escondeTipoSoli1('#gp1','#tiposolic');">
+					<option value="0" >SELECIONE O TIPO DE SOLICITAÇÃO.</option>
+					<option th:object="${tiposoli}" th:each="tipos: ${tiposoli}" name="tipossolicitacao"
+						th:value=${tipos.idtiposolicitacao} th:text="${tipos.especie + ' - '+tipos.tipo }"  ></option>
+				</select>
+			</div>
+			
+
+				<div  id="gp1" class="form-group col-sm-6">
+
+					<label>Proposta de Acordo</label>
+					<select class="form-control col-sm-6">
+						<option value="SIM">SIM</option>
+						<option value="NÂO">NÃO</option>
+					</select>
+				
+
+					<label>Selecione o Grupo</label>
+					<select class="form-control col-sm-6">
+						<option value="0">Grupo 0</option>
+						<option value="1">Grupo 1</option>
+						<option value="2">Grupo 2</option>
+						<option value="3">Grupo 3</option>
+						<option value="4">Grupo 4</option>
+					</select>
+				
+
+					<label>Julgamento Antecipado da Lide</label>
+					<select class="form-control col-sm-6">
+						<option value="SIM">SIM</option>
+						<option value="NÂO">NÃO</option>
+					</select>
+			
+					<label>Envio de Preposto:</label>
+					<select class="form-control col-sm-6" id="enviode">
+
+						<option th:object="${enviode}" th:each="env: ${enviode}" name="enviode" th:value=${env.idenvio}
+							th:text="${env.descricao}"></option>
+					</select>
+				
+					<label>Hora da Audiência:</label>
+					<input type="text" class="form-control col-sm-6" id="horaprado" name="horaprazo">
+
+				</div>
+			
+
+
+			<div class="form-group  col-sm-6 ">
+				<label>Data do Prazo:</label>
+				<input type="text" class="form-control col-sm-6" id="dataprazo" name="dataprazo">
+
+			</div>
+
+			<div class="form-group col-sm-6">
+				<label>Instruções da Solicitação:</label>
+				<textarea class="form-control" rows="5" id="instrucoes"
+					placeholder="Coloque aqui as instruções que serão enviada ao correspondente."></textarea>
+
+			</div>
+			<div class="form-group col-sm-6">
+				<h5 style="color: blue">Seleciona os arquivos de envio</h5>
+				<div class="custom-file">
+					<input id="logo" type="file" class="custom-file-input" multiple
+						onchange="return onChangeFileInput(this);">
+					<label for="logo" class="custom-file-label text-truncate">Escolha
+						os arquivos...</label>
+				</div>
+			</div>
+			<div class="form-group col-sm-12">
+				<h5 style="font-family: Arial, Helvetica, sans-serif;">Arquivos
+					Enviados.</h5>
+
+				<div class="table-responsive">
+					<table id="tb2" class="table table-bordered table-condensed table-striped table-hover"
+						style="font-size: 12px;">
+						<thead class="thead-dark">
+							<tr>
+								<th>NOME DO ARQUIVO</th>
+								<th>DATA</th>
+								<th>OPERAÇÃO</th>
+								<th>LINK</th>
+								<th>BAIXAR</th>
+								<th>EXCLUIR</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="arq : ${arquivo}">
+								<td th:text="${arq.solicitacaoPossuiArquivo.solicitacaoAnexo.nomearquivo}">1</td>
+								<td th:text="${#calendars.format(arq.solicitacaoPossuiArquivo.solicitacaoAnexo.datasolicitacao,'dd/MM/yyyy  HH:mm')}">1</td>
+							<td
+								th:text="${arq.solicitacaoPossuiArquivo.solicitacaoAnexo.operacao}">1</td>
+
+							<td
+								th:text="${arq.solicitacaoPossuiArquivo.solicitacaoAnexo.linkarquivo}">2</td>
+
+							<td class="text-center"><a type="submit" data-toggle="modal"
+								data-target="#modal1" class="btn btn-warning"><i
+									class="fas fa-file-download"></i></a></td>
+
+							<td class="text-center"><a type="submit" data-toggle="modal"
+								data-target="#modal1" class="btn btn-danger"><i
+									class="fas fa-trash-alt"></i></a></td>
+						</tr>
+
+
+					</tbody>
+				</table>
+				</div>
+			</div>
+		
+        
+
+
+		</form>
+		<a class="input btn btn-primary" onclick="apagaForm();">Salvar</a> <a class="input btn btn-primary"
+			onclick="apagaForm();">Limpar</a> <a class="btn btn-success" th:href="@{/solicitacoes}">Sair</a> <br />
+		<br />
+		<br />
+	</div>
+
+	</div>	
+		
+</body>
+
+
+
+<!-- Popper JS -->
+<script type="text/javascript"
+		src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+
+	<script type="text/javascript"
+		src="/webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" th:src="@{/js/libfuncoes.js}"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+<script
+	src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
+
+<script type="text/javascript"
+	src="https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"></script>
+
+<script
+	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+<script
+	src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script
+	src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+
+
+
+<script type="text/javascript">
+
+	function onShowtimeChanged() {
+		var chosenShowtime = $("sel2").val();
+
+	}
+
+	$(document)
+		.ready(
+			function () {
+				$('#tb6')
+					.DataTable(
+						{
+							dom: 'Bfrtip',
+							buttons: ['copyHtml5',
+								'excelHtml5', 'csvHtml5',
+								'pdfHtml5'],
+							"language": {
+								"url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
+							}
+						});
+			});
+
+	function apagaForm() {
+		document.getElementById('form1').reset();
+	}
+
+	$("input.custom-file-input").on(
+		"change",
+		function () {
+			if (this.files.length) {
+				var filename = this.file[0].name;
+				if (filename.length > 23) {
+					filename = filename.substr(0, 11) + "..."
+						+ filename.substr(-10);
+				}
+				$(this).siblings(".custom-file-label").text(filename);
+			}
+		});
+	function onChangeFileInput(elem) {
+		var sibling = elem.nextSibling.nextSibling;
+		sibling.innerHTML = elem.value;
+		return true;
+	}
+	//Funcao que mauda o estado da comaca e filtra
+	function comarcaPorEstado() {
+		var iduf = $("#estadouf").val();
+		$.get("/comarcasuf/" + iduf, function (data) {
+			$("#comarca").empty();
+			data.forEach(function (item, i) {
+				var option = "<option value = " + item.idcomarca + ">" + item.nome
+					+ "</option>";
+				$("#comarca").append(option);
+			});
+		});
+
+	};
+	//Muda o estado
+	$(document).ready(function () {
+		$("#estadouf").change(function () {
+			comarcaPorEstado();
+		});
+	});
+	//Função que muda o email
+	function pegaEmailColab() {
+		var idcor = $("#corr").val();
+		$.get("/novasolictacao/emailcorr/" + idcor, function (data) {
+			$("#emailcorr").empty();
+			data.forEach(function (item, i) {
+				var option = "<option value = " + item.idemail + ">" + item.email
+					+ "</option>";
+				$("#emailcorr").append(option);
+			});
+		});
+
+	};
+	//Muda o email do colaborador
+	$(document).ready(function () {
+		$("#corr").change(function () {
+			pegaEmailColab();
+		});
+	})
+
+
+
+	$(function () {
+		var nua = navigator.userAgent
+		var isAndroid = (nua.indexOf('Mozilla/5.0') > -1 && nua.indexOf('Android ') > -1 && nua.indexOf('AppleWebKit') > -1 && nua.indexOf('Chrome') === -1)
+		if (isAndroid) {
+			$('select.form-control').removeClass('form-control').css('width', '100%')
+		}
+	})
+
+	//Dat pick da data da elaboração
+	$(function () {
+		$("#datainicial").datepicker({
+			dateFormat: 'dd/mm/yy'
+		});
+	});
+	//Picker do data do prazo
+	$(function () {
+		$("#dataprazo").datepicker({
+			dateFormat: 'dd/mm/yy'
+		});
+	});
+
+
+	jQuery(function ($) {
+		$.datepicker.regional['pt-BR'] = {
+			showOn: 'button',
+			buttonImage: 'images/calendar.png',
+			buttonImageOnly: true,
+			dateFormat: 'dd/mm/yy',
+			dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+			dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+			dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+			monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+			monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+			nextText: 'Próximo',
+			prevText: 'Anterior',
+			yearSuffix: ''
+		};
+		$.datepicker.setDefaults($.datepicker.regional['pt-BR']);
+	});
+</script>
+
+</html>

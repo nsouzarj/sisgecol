@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+
+<head>
+<title>Processo Cadastrados</title>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css" />
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+	crossorigin="anonymous">
+</head>
+
+<body>
+
+	<div class="card">
+
+		<div class="card-header bg-dark"></div>
+		<div class="card-body">
+			<h4 class="card-title bg-basic">PROCESSOS</h4>
+			<a class="btn btn-primary" th:href="@{/processos/cadastrar}">Cadastrar</a>
+			<a class="btn btn-success" th:href="@{/menu}">Sair</a> <br /> <br />
+			<div class="table-responsive">
+
+				<table id="tb2"
+					class="table table-hover table-bordered table-condensed table-striped"
+					style="font-size: 12px;">
+					<thead class="thead-dark">
+						<tr>
+							<th>IDPROCESSO</th>
+							<th>NUMERO</th>
+							<th>AUTOR</th>
+							<th>REU</th>
+							<th>COMARCA</th>
+							<th>ORGÃO</th>
+							<th>CARTÓRIO</th>
+							<th>LOCALIZAÇÂO</th>
+							<th>ALTERAR></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="proc : ${processos}">
+							<td th:text="${proc.idprocesso}">1</td>
+							<td th:text="${proc.numeroprocesso}">2</td>
+							<td th:text="${proc.parte}">2</td>
+							<td th:text="${proc.adverso}">2</td>
+							<td
+								th:text="${proc.comarca?.nome}+' - '+${proc.comarca?.uf.sigla}">2</td>
+							<td th:text="${proc.orgao.descricao}">2</td>
+							<td th:text="${proc.cartorio}">2</td>
+							<td th:text="${proc.localizacao}">2</td>
+							<td class="text-center"><button type="submit"
+									class="btn btn-primary">
+									<i class="far fa-edit">
+								</button></td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+
+
+
+	<!-- jQuery library -->
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript"
+		src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"></script>
+
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							$('#tb2')
+									.DataTable(
+											{
+												"language" : {
+													"url" : "//cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
+												}
+											}
+
+									);
+						});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Correspondentes</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css" />
+	
+	<!-- Latest compiled JavaScript -->
+    <link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+	crossorigin="anonymous">
+</head>
+<style>
+	table,
+	th,
+	td {
+		border: 2px solid blue;
+		border-collapse: collapse;
+	}
+</style>
+
+<body>
+	<div class="card-header bg-dark">
+		<h5 class="card-title bg-basic" style="color:white">CORRESPONDENTES</h5>
+	</div>
+	<div class="card-body">
+
+      
+		<form>
+			<div class="form-group">
+				<label >Correspondente:</label> <input type="text" class="form-control" id="colab">
+			</div>
+			<div class="form-group">
+				<label>Comarca:</label>
+				<select class="form-control" id="sel">
+				     <option value="0">SELECIONE UMA COMARCA</option>
+					 <option th:each="comarca: ${com}" th:value=${comarca.idcomarca} th:text="${comarca.nome + ' - '+comarca.uf.sigla}">AMAZONAS	</option>
+				</select>
+			</div>
+          
+           <br/>
+			<button type="submit" class="btn btn-primary">Buscar</button>
+			<a class="btn btn-info" th:href="@{/correspondente/cadcorr}">Novo</a>
+			<a class="btn btn-success" th:href="@{/menu}">Sair</a>
+
+		</form>
+		<h4>LISTAGEM</h4>
+		<div class="table-responsive">
+			<table id="tb1" style="font-size: 12px;"
+				class="table table-bordered table-condensed table-striped table-hover">
+				<thead class="thead-dark">
+					<tr>
+						<th>ID</th>
+						<th>NOME</th>
+						<th>E-MAIL</th>
+						<th>TELFONE(CEL)</th>
+						<th>TELEFONE</th>
+						<th>ALTERAR</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="co : ${corr}">
+						<td th:text="${co.idcorrespondente}">1</td>
+						<td th:text="${co.nome}">2</td>
+						<td th:text="${co.emailprimario}">2</td>
+						<td th:text="${co.telefonecelularprimario}">2</td>
+						<td th:text="${co.telefoneprimario}">2</td>
+						<td class="text-center"><button type="submit" class="btn btn-primary"><i class="far fa-edit"></button></td>
+					</tr>
+
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+
+	<!-- jQuery library -->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"></script>
+	<script type="text/javascript">
+		$(document)
+			.ready(
+				function () {
+					$('#tb1')
+						.DataTable(
+							{
+								"language": {
+									"url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
+								}
+							}
+
+						);
+				});
+	</script>
+</body>
+
+</html>

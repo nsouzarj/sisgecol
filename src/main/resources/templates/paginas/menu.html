@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+
+<head>
+<title>MENU DO SISTEMA</title>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="/webjars/bootstrap/4.4.1/css/bootstrap.min.css">
+<style>
+	.body{
+		background-color: white;
+	}
+</style>	
+</head>
+
+<body class="body">
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="navbar-brand" href="#">SISGECOL</a>
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Links -->
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+
+				<!-- Dropdown -->
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbardrop"
+					data-toggle="dropdown"> Cadastros </a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" th:href="@{correspondentes}" href="#">Colaborador</a>
+						<a class="dropdown-item" th:href="@{comarcas}">Comarcas</a> <a
+							class="dropdown-item" th:href="@{usuarios}">Usuarios</a> <a
+							class="dropdown-item" th:href="@{processos}">Processos</a> <a
+							class="dropdown-item" th:href="@{bancas}">Bancas</a>
+					</div></li>
+				<!-- Dropdown -->
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbardrop"
+					data-toggle="dropdown"> Solicitações </a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" th:href="@{solicitacoes}">Busca
+							Solicitações</a> <a class="dropdown-item" th:href="@{comarcas}">Relatório
+							Pendentes</a> <a class="dropdown-item" th:href="@{usuarios}">Relatório
+							Aud. de Audiências</a>
+
+					</div></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/}">Sair do
+						Sisgecol</a></li>
+
+			</ul>
+		</div>
+	</nav>
+
+	<div style="align-content: center" class="container">
+		<p>
+		<p>
+		<div class="jumbotron">
+			<h1 style="align-content: center" >Sistema de Solicitações</h1>
+			<p>
+			<p>
+			<p>Sistema em estudo e desenvolvimento de colaboradores e
+				solicitaçãos .</p>
+			<p />
+			<p>Elaborado em Spring Boot, Themyleaf e Boostrap 4.0  </p>
+			<p>Banco de dados em PostgreeSQL</p>
+		</div>
+	</div>
+	<script type="text/javascript"
+		src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="/webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" th:src="@{/js/libfuncoes.js}"></script>
+
+	<!-- Popper JS -->
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	
+
+</body>
+
+
+</html>

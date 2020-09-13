@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<title>Comarcas Cadastradas</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/webjars/bootstrap/4.4.1/css/bootstrap.min.css">
+
+
+<!-- Popper JS -->
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+		  integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+	<script datatype="text/javascript" >
+	   var teste;
+		function deleta(obj,valor1,valor2){
+		  var coluna1 = $(obj).parents("tr").find("td:nth-child(" + valor1 + ")");
+		  var coluna2 = $(obj).parents("tr").find("td:nth-child(" + valor2 + ")");
+		 // window.alert("Valor "+coluna.html());
+		  teste= $(obj).parents("tr").find("td:nth-child(" + valor1 + ")");
+
+          $('#XX').html(coluna1.html()+' - '+coluna2.html() )
+		  }
+         //Confirma a exlucao
+		 function confirma(){
+           var id=teste.html();
+           window.location.href="/comarcas/excluir/"+id;
+
+		 }
+
+
+	</script>
+</head>
+<body>
+
+	<div class="card">
+
+		<div class="card-header bg-dark">
+			<h5 style="color:white" >COMARCAS</h5>
+		</div>
+		<div class="card-body">
+
+			<form>
+				<div class="alert alert-success alert-dismissible"  th:if ="${!#strings.isEmpty(msg1)}">
+					<button type="button" class="close" data-dismiss="alert"></button>
+					<span th:text="${msg1}"></span>
+				</div>
+				<div class="alert alert-danger alert-dismissible"  th:if ="${!#strings.isEmpty(msgerror)}">
+					<button type="button" class="close" data-dismiss="alert"></button>
+					<span th:text="${msgerror}"></span>
+				</div>
+
+				<div class="form-group">
+					<label>Nome da Comarca:</label> <input type="text"
+						class="form-control input-sm" id="email">
+				</div>
+
+
+
+				<div class="form-group">
+					<label>Estados:</label> <select class="form-control"
+						id="sel1">
+						<option value="0">SELECIONE UM ESTADO</option>
+						<option th:each="estado: ${uf}"  th:value=${estado.iduf}
+							th:text=${estado.nome}>estado</option>
+					</select>
+				</div>
+
+				<button  type="submit" class="btn btn-primary">Buscar</button>
+				<a  class="btn btn-info"  th:href="@{/comarcas/cadastro}">Cadastrar</a>
+				<a class="btn btn-success" th:href="@{/menu}">Sair</a>
+
+			</form>
+			<br />
+			<h4>LISTAGEM</h4>
+			<div class="table-responsive">
+				<table id="tb2"
+					class="table table-hover table-bordered table-condensed table-striped"
+					style="font-size: 12px;">
+					<thead class="thead-dark">
+						<tr>
+							<th>ID</th>
+							<th>COMARCA</th>
+							<th>ESTADO</th>
+							<th>EXCLUIR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="coma : ${comar}">
+							<td id="codigo" th:text="${coma.idcomarca}">1</td>
+							<td th:text="${coma.nome}">2</td>
+							<td th:text="${coma.uf?.nome}">2</td>
+							<td class="text-center"><a type="submit" data-toggle="modal" id="btex" onclick="deleta(this,1,2);"
+													   data-target="#modal1" class="btn btn-danger"><i
+									class="fas fa-trash-alt" ></i></a></td>
+
+						</tr>
+					</tbody>
+				</table>
+				<!--Mostra o modal da alteração-->
+				<div class="modal fade " id="modal1">
+					<div class="modal-dialog modal-dialog-centered">
+
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+
+								<h4 class="modal-title" style="font-size: 20px;">EXCLUIR
+									COMARCA</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+							<div class="modal-body">
+								<p>Deseja realmente excluir a comarca?.</p>
+								<h5 id="XX"></h5>
+							</div>
+							<div class="modal-footer">
+								<a type="submit" class="btn btn-success" onclick="confirma();"
+										data-dismiss="modal">Sim</a>
+								<button type="button" class="btn btn-primary"
+										data-dismiss="modal">Não</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	
+
+
+	<!-- jQuery library -->
+	<script type="text/javascript"
+			src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+
+	<script type="text/javascript"
+			src="/webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" th:src="@{/js/libfuncoes.js}"></script>
+	<link rel="stylesheet" href="/webjars/bootstrap/4.4.1/css/bootstrap.min.css">
+
+	<!-- Popper JS -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+
+	<script
+		src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"></script>
+
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							$('#tb2')
+									.DataTable(
+											{
+												"language" : {
+													"url" : "//cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
+												}
+											}
+
+									);
+						});
+	</script>
+</body>
+
+</html>

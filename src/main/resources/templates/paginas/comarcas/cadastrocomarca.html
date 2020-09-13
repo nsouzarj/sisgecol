@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro de Comarcas</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/javascript"
+			src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+
+<script type="text/javascript"
+			src="/webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" th:src="@{/js/libfuncoes.js}"></script>
+<link rel="stylesheet" href="/webjars/bootstrap/4.4.1/css/bootstrap.min.css">
+
+
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+</head>
+<body>
+	<div class="card">
+		<div class="card-header bg-dark">
+			<h5 style="color:white">CADASTRO DE COMARCAS</h5>
+		</div>
+		<div class="card-body">
+
+			<form action="/comarcas/cadastro" method="POST">
+
+				<div class="alert alert-success alert-dismissible"  th:if ="${!#strings.isEmpty(menssagem)}">
+					<button type="button" class="close" data-dismiss="alert"></button>
+					<span th:text="${menssagem}"></span>
+				</div>
+				<div class="form-group col-xs-12">
+					<label>Nome da Comarca:</label>
+						<input type="text" name="nome" placeholder="Coloque o nome da comarca aqui" onkeyup="this.value = this.value.toUpperCase();" class="form-control input-sm uppercase" id="com" required="true"
+							   oninvalid="this.setCustomValidity('Valor obrigatório !!')"   oninput="this.setCustomValidity('')">
+					<label for="sel1">Estados:</label>
+						 <select class="form-control"  name="uf.iduf"   id="sel1"  >
+						<option  th:each="uf: ${ufteste}" th:value="${uf.iduf}" th:text="${uf.nome}"    class="form-control input-sm" >AMAZONAS</option>
+					</select>
+					<p></p>
+					<div>
+						<button type="submit" class="btn btn-primary" errormessage="Coloque o nome da comarca" >Salvar</button>
+						<a class="btn btn-success" th:href="@{/comarcas}" >Sair</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+	<!-- jQuery library -->
+	<script type="text/javascript"
+			src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+
+	<script type="text/javascript"
+			src="/webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" th:src="@{/js/libfuncoes.js}"></script>
+
+
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+
+</body>
+</html>

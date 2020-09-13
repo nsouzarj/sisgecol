@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Usuarios</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+</head>
+
+<body>
+
+	<div class="card-header bg-primary"></div>
+	<div class="card-body">
+		<h4 class="card-title bg-basic">USUARIOS</h4>
+		<a class="btn btn-primary" th:href="@{/usuarios/cadastro}">Cadastrar</a>
+		<a class="btn btn-success" th:href="@{/menu}">Sair</a> <br /> <br />
+		<h4>LISTAGEM</h4>
+		<div class="table-responsive">
+			<form>
+				<table id="tb1" class="table table-bordered table-condensed table-striped table-hover"
+					style="font-size: 12px;">
+					<thead class="thead-dark">
+						<tr>
+							<th>ID</th>
+							<th>NOME</th>
+							<th>LOGIN</th>
+							<th>EMAIL</th>
+							<th>ALTERAR</th>
+							<th>INATIVAR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="co,ta : ${usuario}">
+							<td th:text="${co.idusuario}">1</td>
+							<td id="nom" th:text="${co.nomecompleto}">2</td>
+							<td th:text="${co.login}">2</td>
+							<td th:text="${co.emailprincipal}">2</td>
+
+							<td class="text-center"><a type="submit"  th:href="@{'/usuarios/alterar/'+${co.idusuario}}"
+									class="btn btn-primary button"><i class="far fa-edit"></i></a></td>
+							<td class="text-center"><a type="submit"
+									 data-toggle="modal" data-target="#myModal2"
+									 class="btn btn-warning"><i
+										class="fas fa-user-times"></i></a></td>
+						</tr>
+
+
+					</tbody>
+				</table>
+			</form>
+
+		</div>
+	</div>
+
+	<!--Mostra o modal da alteração-->
+	<div class="modal fade " id="myModal1">
+		<div class="modal-dialog modal-dialog-centered">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+
+					<h4 class="modal-title" style="font-size: 20px;">Alterar
+						Usuário</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body"  >
+					<p> Some text in the modal.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Sair</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+
+	<!--Mostra o modal da alteração-->
+	<div class="modal fade" id="myModal2" role="dialog" >
+		<div class="modal-dialog modal-dialog-centered" role="document">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+
+					<h4 class="modal-title">Inativar Usuário</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p >Realmente Deseja Inativar o Usuário?.</p>
+					
+
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Sair</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+
+
+	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"></script>
+	<script type="text/javascript">
+		$(document)
+			.ready(
+				function () {
+					$('#tb1')
+						.DataTable(
+							{
+								"language": {
+									"url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
+								}
+							}
+
+						);
+				});
+	</script>
+
+
+
+
+</body>
