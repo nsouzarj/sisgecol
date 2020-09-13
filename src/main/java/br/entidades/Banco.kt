@@ -42,6 +42,9 @@ class Banco : Serializable {
         return result
     }
 
+    /**
+     * Aqui e os rescode
+     */
     override fun equals(obj: Any?): Boolean {
         if (this === obj) return true
         if (obj == null) return false
