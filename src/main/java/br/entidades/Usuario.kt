@@ -117,4 +117,20 @@ class Usuario : Serializable {
     companion object {
         private const val serialVersionUID = 1L
     }
+
+     fun toTipo(): String{
+        var tipotexto=""
+        if(tipo==1){
+           tipotexto ="Admin"
+        }else if(tipo==2){
+            tipotexto = "Advgoado"
+        }else if(tipo==3){
+            tipotexto ="Correspondente"
+        }else if(tipo==4){ 
+            tipotexto ="Estagiário" 
+        }else {
+            tipotexto ="Tipo Desconhecido"
+        }
+        return tipotexto 
+    }
 }

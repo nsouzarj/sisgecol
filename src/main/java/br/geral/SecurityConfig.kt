@@ -35,7 +35,7 @@ import kotlin.jvm.Throws
     @Throws(Exception::class)
     override  fun configure(http: HttpSecurity) {
 
-
+   //E  um teste
         // http.csrf().disable().authorizeRequests().antMatchers("/login","/resources/**",
         // "/webjars/**","/erro/**").permitAll().anyRequest().authenticated().and().httpBasic();
         println("Logou....maluco")
