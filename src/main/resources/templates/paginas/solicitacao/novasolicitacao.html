@@ -6,37 +6,23 @@
 	<title>Nova Solicitação</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<link rel="stylesheet" href="/webjars/bootstrap/4.4.1/css/bootstrap.min.css">
-
-
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css"
 		rel="stylesheet" />
-
 	<!-- Popper JS -->
-
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css" />
-
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
-
 	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css" />
-
 	<link rel="stylesheet"
 		href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" />
-
-
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
 		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
-
 
 	<style>
 		#teste {
 			color: blue;
 			background-color: silver;
 			border: solid;
-
-
 		}
 
 		#id {
@@ -83,37 +69,34 @@
 		<h5  style="color: white;" id="nv">NOVA SOLICITAÇÃO</h5>
 	</div>
 	<div class="card-body col-lg">
-
-
 		<form class="row" id="form1" lang="pt-BR">
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Número do Processo:</label> <Label
-					class="mr-sm-2">28237827827872873872837</Label>
-			</div>
+			<div  style=" background:  border: 2px; border-color: red; background:  ;  ">
+				<div class="form-group col-sm-6">
+					<label class="mr-sm-2">Número do Processo:</label> <Label
+						class="mr-sm-2">28237827827872873872837</Label>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="mr-sm-2">Altor:</label> <Label class="mr-sm-2">NELSON
+						SEIXAS DE SOUZA</Label>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="mr-sm-2">Réu:</label> <Label class="mr-sm-2">CAIXA
+						ECONOMICA FEDERAL</Label>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="mr-sm-2">Assunto:</label> <Label class="mr-sm-2">DECLARATÓRIA/SUMÀRISSIMO</Label>
+				</div>
+				<div class="form-group col-sm-6">
+					<label class="mr-sm-2">Cadastro:</label> <Label class="mr-sm-2">JUIZADO
+						ESPECIAL CÍVEL, TJRS - TRIBUNAL DE JUSTIÇA DO ESTADO DO RIO GRANDE
+						DO SUL , TERRA DE AREIA - RS</Label>
+				</div>
+				</div>
+				<div class="form-group  col-sm-6 ">
+					<label>Data da Elaboração:</label>
+					<input type="text" class="form-control col-sm-6" id="datainicial" name="datainicial">
 
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Altor:</label> <Label class="mr-sm-2">NELSON
-					SEIXAS DE SOUZA</Label>
 			</div>
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Réu:</label> <Label class="mr-sm-2">CAIXA
-					ECONOMICA FEDERAL</Label>
-			</div>
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Assunto:</label> <Label class="mr-sm-2">DECLARATÓRIA/SUMÀRISSIMO</Label>
-			</div>
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Cadastro:</label> <Label class="mr-sm-2">JUIZADO
-					ESPECIAL CÍVEL, TJRS - TRIBUNAL DE JUSTIÇA DO ESTADO DO RIO GRANDE
-					DO SUL , TERRA DE AREIA - RS</Label>
-			</div>
-
-			<div class="form-group  col-sm-6 ">
-				<label>Data da Elaboração:</label>
-				<input type="text" class="form-control col-sm-6" id="datainicial" name="datainicial">
-
-			</div>
-
 			<div class="form-group col-sm-6">
 				<label>Banca:</label> <select class="form-control col-sm-6" id="sel1">
 					<option value="0">SELECIONE UMA BANCA.</option>
@@ -146,13 +129,10 @@
 			</div>
 
 			<div class="form-group col-sm-6">
-				<label class="mr-sm-2" for="exampleInputEmail1">Número do
+				<label class="mr-sm-2" >Número do
 					Orgão:</label> <input type="number" class="form-control col-sm-6" name="numeroorgao" value="0"
 					required>
 			</div>
-
-
-
 			<div class="form-group col-sm-6">
 				<label>Selecione o Correspondente:</label> <select class="form-control col-sm-6" id="corr">
 					<option value="0">SELECIONE O CORRESPONDENTE.</option>
@@ -160,7 +140,6 @@
 						th:value=${corr.idcorrespondente} th:text="${corr.nome}"></option>
 				</select>
 			</div>
-
 			<div class="form-group col-sm-6">
 				<label>Selecione o E-Email:</label> <select class="form-control col-sm-6" id="emailcorr">
 					<option value="0">SELECIONE O E-EMAIL.</option>
@@ -168,7 +147,6 @@
 						name="emailcorrespondente" th:value=${em.idemail} th:text="${em.email}"></option>
 				</select>
 			</div>
-
 			<div class="form-group col-sm-6">
 				<label>Selecione o Tipo de Solicitação:</label> 
 				<select class="form-control col-sm-6" id="tiposolic" onChange="escondeTipoSoli1('#gp1','#tiposolic');">
@@ -177,17 +155,12 @@
 						th:value=${tipos.idtiposolicitacao} th:text="${tipos.especie + ' - '+tipos.tipo }"  ></option>
 				</select>
 			</div>
-			
-
 				<div  id="gp1" class="form-group col-sm-6">
-
 					<label>Proposta de Acordo</label>
 					<select class="form-control col-sm-6">
 						<option value="SIM">SIM</option>
 						<option value="NÂO">NÃO</option>
 					</select>
-				
-
 					<label>Selecione o Grupo</label>
 					<select class="form-control col-sm-6">
 						<option value="0">Grupo 0</option>
@@ -196,39 +169,28 @@
 						<option value="3">Grupo 3</option>
 						<option value="4">Grupo 4</option>
 					</select>
-				
-
 					<label>Julgamento Antecipado da Lide</label>
 					<select class="form-control col-sm-6">
 						<option value="SIM">SIM</option>
 						<option value="NÂO">NÃO</option>
 					</select>
-			
 					<label>Envio de Preposto:</label>
 					<select class="form-control col-sm-6" id="enviode">
-
 						<option th:object="${enviode}" th:each="env: ${enviode}" name="enviode" th:value=${env.idenvio}
 							th:text="${env.descricao}"></option>
 					</select>
-				
 					<label>Hora da Audiência:</label>
 					<input type="text" class="form-control col-sm-6" id="horaprado" name="horaprazo">
-
 				</div>
-			
-
-
 			<div class="form-group  col-sm-6 ">
 				<label>Data do Prazo:</label>
 				<input type="text" class="form-control col-sm-6" id="dataprazo" name="dataprazo">
 
 			</div>
-
 			<div class="form-group col-sm-6">
 				<label>Instruções da Solicitação:</label>
 				<textarea class="form-control" rows="5" id="instrucoes"
 					placeholder="Coloque aqui as instruções que serão enviada ao correspondente."></textarea>
-
 			</div>
 			<div class="form-group col-sm-6">
 				<h5 style="color: blue">Seleciona os arquivos de envio</h5>
@@ -274,16 +236,10 @@
 								data-target="#modal1" class="btn btn-danger"><i
 									class="fas fa-trash-alt"></i></a></td>
 						</tr>
-
-
 					</tbody>
 				</table>
 				</div>
 			</div>
-		
-        
-
-
 		</form>
 		<a class="input btn btn-primary" onclick="apagaForm();">Salvar</a> <a class="input btn btn-primary"
 			onclick="apagaForm();">Limpar</a> <a class="btn btn-success" th:href="@{/solicitacoes}">Sair</a> <br />

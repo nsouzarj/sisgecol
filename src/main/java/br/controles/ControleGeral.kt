@@ -7,10 +7,21 @@ import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.ModelAndView
 import org.springframework.web.servlet.config.annotation.CorsRegistry
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 
 @Controller
 @CrossOrigin(origins = ["*"], maxAge = 3600)
 class ControleGeral {
+
+    fun addResourceHandlers(registry: ResourceHandlerRegistry){
+        registry.addResourceHandler("swagger-ui.html")
+        .addResourceLocations("classpath:/META-INF/resources/")
+        registry.addResourceHandler("/webjars/**").addResourceLocations("/webjars/").setCachePeriod(3600).resourceChain(true);
+        registry.addResourceHandler("/webjars/**")
+            .addResourceLocations("classpath:/META-INF/resources/webjars/");
+        print("Registrou o webjars......")
+    // registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
 
     fun addCorsMappings(registry: CorsRegistry) {
         registry.addMapping("/**").allowedOrigins("*").allowedHeaders("*").exposedHeaders("*").allowedMethods("*")
@@ -23,41 +34,34 @@ class ControleGeral {
                 .allowCredentials(true).maxAge(3600)
         registry.addMapping("/static/**").allowedOrigins("*").allowedHeaders("*").exposedHeaders("*").allowedMethods("*")
                 .allowCredentials(true).maxAge(3600)
+        registry.addMapping("/webjars/**").allowedOrigins("*").allowedHeaders("*").exposedHeaders("*").allowedMethods("*")
+            .allowCredentials(true).maxAge(3600)
+        registry.addMapping("/swagger-ui/**").allowedOrigins("*").allowedHeaders("*").exposedHeaders("*").allowedMethods("*")
+            .allowCredentials(true).maxAge(3600)
     }
 
     @Autowired
     private val servicoSolicitacao: ServicoSolicitacao? = null
-
     @Autowired
     private val servicoUf: ServicoUf? = null
-
     @Autowired
     private val servicoComarca: ServicoComarca? = null
-
     @Autowired
     private val servicoBanca: ServicoBanca? = null
-
     @Autowired
     private val servicoCorrespondente: ServicoCorrespondente? = null
-
     @Autowired
     private val servicoUsuario: ServicoUsuario? = null
-
     @Autowired
     private val servicoComarcaPossui: ServicoComarcaPossui? = null
-
     @Autowired
     private val servicoTipoSolicitacao: ServicoTipoSolicitacao? = null
-
     @Autowired
     private val servicoStatusSolicitacao: ServicoStatusSolicitacao? = null
-
     @Autowired
     private val servicoLogin: ServicoLogin? = null
-
     @Autowired
     private val servicoProcesso: ServicoProcesso? = null
-
     @CrossOrigin
     @ResponseBody
     @RequestMapping("/pagina")
@@ -275,13 +279,11 @@ class ControleGeral {
    @RequestMapping(method = [RequestMethod.POST], value = ["/comarcas/cadastro"])
 
    fun  Salvar(comarca:Comarca) :ModelAndView {
-
        servicoComarca?.salvar(comarca)
        val mv=ModelAndView("paginas/comarcas/cadastrocomarca")
        val com1 = servicoUf!!.findAll()
        mv.addObject("ufteste", com1)
        mv.addObject("menssagem","Comarca salva com sucesso !!!")
-
        return mv
    }
 

@@ -22,9 +22,7 @@ Classe de servico comarca
 
 
     @Override
-
     fun findAll(): List<Comarca>? {
-
         return entityManager?.createQuery("from Comarca where uf.iduf > 0 order by nome")?.resultList as List<Comarca>?
     }
     /**
@@ -72,18 +70,14 @@ Classe de servico comarca
     /**
     Salva a comarca
      */
-
      @Override
-
      open fun salvar(comarca: Comarca) {
-
       var perssitencia:EntityManager=emf!!.createEntityManager()
       var  trassacao: EntityTransaction = perssitencia.transaction
         trassacao.begin()
         perssitencia.persist(comarca)
         trassacao.commit()
         perssitencia.close()
-
     }
 
 

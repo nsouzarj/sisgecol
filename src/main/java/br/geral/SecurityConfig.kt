@@ -2,6 +2,7 @@ package br.geral
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
 import org.springframework.security.authentication.AuthenticationManager
@@ -16,12 +17,15 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.servlet.ViewResolver
 import org.springframework.web.servlet.view.InternalResourceViewResolver
+import javax.servlet.FilterConfig
+import javax.servlet.ServletException
 import javax.sql.DataSource
 import kotlin.jvm.Throws
 
 @Configuration
-@EnableWebSecurity(debug = false)
-@EnableGlobalMethodSecurity(prePostEnabled = true) // @ComponentScan(basePackages={"br.eti.nsouza.config","br.eti.nsouza.entidades","br.eti.nsouza.controle","br.eti.nsouza.repositorios","br.eti.nsouza.geral"})
+//@EnableWebSecurity(debug = false)
+//@EnableGlobalMethodSecurity(prePostEnabled = false)
+//@ComponentScan(basePackages={"br.eti.nsouza.config";"br.eti.nsouza.entidades","br.eti.nsouza.controle","br.eti.nsouza.repositorios","br.eti.nsouza.geral"]})
 // @Configuration
 /**
  * Classe de segurança pra uso afins
@@ -29,6 +33,7 @@ import kotlin.jvm.Throws
  * @author Nelson
  */
  open class SecurityConfig : WebSecurityConfigurerAdapter() {
+
     var encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder()!!
     var encoder1 = BCryptPasswordEncoder()
 
@@ -38,12 +43,12 @@ import kotlin.jvm.Throws
    //E  um teste
         // http.csrf().disable().authorizeRequests().antMatchers("/login","/resources/**",
         // "/webjars/**","/erro/**").permitAll().anyRequest().authenticated().and().httpBasic();
-        println("Logou....maluco")
+        println("Sistema inicializado !!!!")
         // http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
         //http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.GET,"/**").permitAll();
 
         http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.GET, "/webjars/**","/erro/**","/login","/uf/**", "/tipos/**", "/solicitacao/**", "/status/**", "/comarcapossui/**",
-                "/usuarios/**", "/colaborador/**", "/bancas/**", "/comarca/**", "/comarcas/**", "/**", "/").permitAll()
+                "/usuarios/**", "/swagger-ui/**", "/colaborador/**", "/bancas/**", "/comarca/**", "/comarcas/**", "/**", "/").permitAll()
 
         http.cors()
     }
@@ -54,6 +59,7 @@ import kotlin.jvm.Throws
     @Autowired
     @Throws(Exception::class)
     override fun configure(builder: AuthenticationManagerBuilder) {
+
         println("Entrei....")
         builder.jdbcAuthentication().dataSource(data).passwordEncoder(BCryptPasswordEncoder())
                 .usersByUsernameQuery(
@@ -61,9 +67,9 @@ import kotlin.jvm.Throws
                 .authoritiesByUsernameQuery(
                         "select emailprincipal, senha as password, ativo  from usuario where emailprincipal=?")
 
-        // builder.inMemoryAuthentication()
-        // .withUser("tim").password("123").roles("ADMIN") .and()
-        // .withUser("nsouzarj@bol.com.br").password(encoder.encode("nso1810")).roles("USER");
+         builder.inMemoryAuthentication()
+         .withUser("tim").password("123").roles("ADMIN") .and()
+         .withUser("nsouzarj@bol.com.br").password(encoder.encode("nso1810")).roles("USER");
     }
 
     @Bean

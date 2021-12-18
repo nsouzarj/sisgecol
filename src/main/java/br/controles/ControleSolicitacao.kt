@@ -12,11 +12,15 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry
 @Controller
 @CrossOrigin(origins = ["*"], maxAge = 3600)
 class ControleSolicitacao {
+
     fun addCorsMappings(registry: CorsRegistry) {
+
         registry.addMapping("/**").allowedOrigins("*").allowedHeaders("*").exposedHeaders("*").allowedMethods("*")
                 .allowCredentials(true).maxAge(3600)
         registry.addMapping("/resources/**").allowedOrigins("*").allowedHeaders("*").exposedHeaders("*").allowedMethods("*")
                 .allowCredentials(true).maxAge(3600)
+        registry.addMapping("/webjars/**").allowedOrigins("*").allowedHeaders("*").exposedHeaders("*").allowedMethods("*")
+            .allowCredentials(true).maxAge(3600)
     }
 
     @Autowired

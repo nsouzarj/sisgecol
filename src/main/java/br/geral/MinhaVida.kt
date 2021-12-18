@@ -9,6 +9,7 @@ object MinhaVida {
         println("MOM: ANA ROSA")
         println("BRO: ALDO SEIXAS")
         println("FRIENDS: TENHO OS MELHORES")
+        println("MY PET - RAIKA")
         readLine()
     }
 }

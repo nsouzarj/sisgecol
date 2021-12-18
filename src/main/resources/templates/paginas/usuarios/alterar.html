@@ -7,8 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/webjars/bootstrap/4.4.1/css/bootstrap.min.css" />
-
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" />
 
 <script>
 	function pega() {
@@ -30,10 +29,7 @@
 		<div class="card-header bg-primary"></div>
 		<div class="card-body">
 			<h4 class="card-title bg-basic">Alterar Usuário</h4>
-
-
 			<form th:object="${altera}">
-
 				<div class="form-group col-xs-12">
 					<div class="form-group">
 						<label for="sel1">Tipo de Usuário</label> <select
@@ -57,9 +53,6 @@
 							</option>
 						</select>
 					</div>
-				
-
-
 				<label  for="tipo">Nome do Usuário:</label> <input type="text"
 					name="nomecompleto" th:field="*{nomecompleto}"
 					onkeyup="this.value = this.value.toUpperCase();"
@@ -81,29 +74,19 @@
 
 				<p />
 				<div>
-
 					<button type="submit" class="btn btn-success">Salva</button>
 					<a class="btn btn-info" th:href="@{/usuarios}">Sair</a>
 				</div>
 		</div>
-
-
-
-
 		</form>
 	</div>
 	</div>
-
-
-
 	<!-- jQuery library -->
 	<script type="text/javascript"
-		src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+		th:src="@{/webjars/jquery/3.4.1/jquery.min.js"}></script>
 	<script type="text/javascript"
-		src="/webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
+		th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/libfuncoes.js}"></script>
-	
 </body>
 
 </html>

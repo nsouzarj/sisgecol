@@ -10,12 +10,10 @@ class HistArqCpro {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqhistcpro")
     var idarqcppro: Int? = null
-
     @OneToOne
     var solicitacaoAnexo: SolicitacaoAnexo? = null
     var idarquivocppro: Int? = null
     var salvoem: Date? = null
-
     constructor()
     constructor(idarqcppro: Int?, solicitacaoAnexo: SolicitacaoAnexo?, idarquivocppro: Int?, salvoem: Date?) {
         this.idarqcppro = idarqcppro
