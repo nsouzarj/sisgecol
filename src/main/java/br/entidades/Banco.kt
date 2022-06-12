@@ -23,4 +23,12 @@ class Banco : Serializable {
     companion object {
         private const val serialVersionUID = 1L
     }
+
+
+    override fun toString(): String {
+        return "Banco(idbanco=$idbanco, codbanco=$codbanco, agencia=$agencia, banco=$banco, contacorrente=$contacorrente, correspondente=$correspondente)"
+    }
+
+
+
 }

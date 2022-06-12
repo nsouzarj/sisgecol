@@ -26,8 +26,15 @@ class ServicoBanca {
 
     fun delete(idbanca: Int?) {
         entityManager!!.transaction.begin()
-        val soli = entityManager.find(BancaProcesso::class.java, idbanca)
-        entityManager.remove(soli)
+        val post = entityManager.find(BancaProcesso::class.java, idbanca)
+        entityManager.remove(post)
         entityManager.transaction.commit()
+    }
+
+    fun post(post: BancaProcesso): BancaProcesso {
+        entityManager!!.transaction.begin()
+        entityManager.merge(post)
+        entityManager.transaction.commit()
+        return post
     }
 }
