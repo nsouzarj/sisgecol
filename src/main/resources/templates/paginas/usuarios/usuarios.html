@@ -32,20 +32,28 @@
 	</style>
 	<script datatype="text/javascript" >
 	   var teste;
-		function inativaUsuario(obj,valor1,valor2){
+		function inativarOuAtivarUsuario(obj,valor1,valor2){
 		  var coluna1 = $(obj).parents("tr").find("td:nth-child(" + valor1 + ")");
 		  var coluna2 = $(obj).parents("tr").find("td:nth-child(" + valor2 + ")");
 		 // window.alert("Valor "+coluna.html());
 		  teste= $(obj).parents("tr").find("td:nth-child(" + valor1 + ")");
 
-          $('#XX').html(coluna1.html()+' - '+coluna2.html() )
+          $('#XXA').html(coluna1.html()+' - '+coluna2.html() )
+          $('#XXB').html(coluna1.html()+' - '+coluna2.html() )
 		  }
-         //Confirma a exlucao
-		 function confirma(){
+         //Confirma a inativacao
+		 function confirmarInativacao(){
            var id=teste.html();
-           window.location.href="/usuarios/inativar/"+id;
+           window.location.href="/usuarios/inativarativar/"+id+"/"+"inativar";
 
 		 }
+		 //Confimra a ativacao
+		 function confirmarAtivacao(){
+           var id=teste.html();
+           window.location.href="/usuarios/inativarativar/"+id+"/"+"ativar";
+
+		 }
+
 	</script>
 </head>
 
@@ -70,9 +78,10 @@
 							<th>LOGIN</th>
 							<th>EMAIL</th>
 							<th>TIPO</th>
-							<th>ATIVO</th>
+							<th>STATUS</th>
 							<th>ALTERAR</th>
 							<th>INATIVAR</th>
+							<th>ATIVAR</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -90,9 +99,15 @@
 									class="btn btn-primary  btn-sm button"><i class="far fa-edit"></i></a>
 							</td>
 							<td class="text-center">
-								<button  th:disabled="${co.toAtivo()=='Inativo'}"  type="submit" data-toggle="modal" data-target="#myModal2"  onclick="inativaUsuario(this,1,2)"
-										class="btn btn-primary btn-sm">
-									<i class="fas fa-user-times"></i></button>
+								<button  th:disabled="${co.toAtivo()=='Inativo'}"  type="submit" data-toggle="modal" data-target="#myModal2"  onclick="inativarOuAtivarUsuario(this,1,2)"
+										class="btn btn-danger btn-sm">
+									<i class="far fa-thumbs-down"></i></button>
+
+							</td>
+							<td class="text-center">
+								<button  th:disabled="${co.toAtivo()=='Ativo'}"  type="submit" data-toggle="modal" data-target="#myModal3"  onclick="inativarOuAtivarUsuario(this,1,2)"
+										class="btn btn-success btn-sm">
+									<i class="far fa-thumbs-up"></i></button>
 
 							</td>
 						</tr>
@@ -102,7 +117,7 @@
 		</div>
 	</div>
 
-	<!--Mostra o modal da alteração-->
+	<!--Mostra o modal da inativacao-->
 	<div class="modal fade" id="myModal1">
 		<div class="modal-dialog modal-dialog-centered">
 			<!-- Modal content-->
@@ -117,7 +132,7 @@
 					<p>Some text in the modal.</p>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-success" onclick="confirma();" >Sim</button>
+					<button type="button" class="btn btn-success" onclick="confirmaInativacao();" >Sim</button>
 					<button type="button" class="btn btn-primary" data-dismiss="modal">
 						Não
 					</button>
@@ -126,23 +141,24 @@
 		</div>
 	</div>
 
-	<!--Mostra o modal da alteração-->
+	
+	<!--Mostra o modal da ativacao-->
 	<div class="modal fade" id="myModal2" role="dialog">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">Inativar Usuário -   </h4>
+					<h4 class="modal-title">Inativar o Usuário</h4>
 					<button type="submit"  class="close" data-dismiss="modal">x</button>
 
 				</div>
 				<div class="modal-body">
-					<p>Realmente Deseja Inativar o Usuário?.</p>
-					<h5 id="XX"></h5>
+					<p>Realmente deseja inativar o usuário?</p>
+					<h5 id="XXA"></h5>
 
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-success" data-dismiss="modal" onclick="confirma();" >Sim</button>
+					<button type="button" class="btn btn-success" data-dismiss="modal" onclick="confirmarInativacao();" >Sim</button>
 					<button type="button" class="btn btn-primary" data-dismiss="modal">
 						Não
 					</button>
@@ -150,6 +166,31 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="modal fade" id="myModal3" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Ativar o Usuário</h4>
+					<button type="submit"  class="close" data-dismiss="modal">x</button>
+
+				</div>
+				<div class="modal-body">
+					<p>Realmente Ativar o Usuário?.</p>
+					<h5 id="XXB"></h5>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" data-dismiss="modal" onclick="confirmarAtivacao();" >Sim</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">
+						Não
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </body>
 
 <!-- Popper JS -->

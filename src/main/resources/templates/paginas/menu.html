@@ -30,18 +30,18 @@
 			<ul class="navbar-nav">
 				<!-- Dropdown -->
 				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbardrop"
+					class="nav-link dropdown-toggle" href="#" id="navbardrop'"
 					data-toggle="dropdown"> Cadastros </a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" th:href="@{correspondentes}" href="#">Correspondentes</a>
 						<a class="dropdown-item" th:href="@{comarcas}">Comarcas</a> <a
 							class="dropdown-item" th:href="@{usuarios}">Usuarios</a> <a
-							class="dropdown-item" th:href="@{processos}">Processos</a> <a
+							class="dropdown-item" th:href="@{'processos/0/1000'}">Processos</a> <a
 							class="dropdown-item" th:href="@{bancas}">Bancas</a>
 					</div></li>
 				<!-- Dropdown -->
 				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbardrop"
+					class="nav-link dropdown-toggle" href="#" id="navbardrop2"
 					data-toggle="dropdown"> Solicitações </a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" th:href="@{solicitacoes}">Busca
@@ -52,7 +52,7 @@
 					</div></li>
 				<li class="nav-item"><a class="nav-link" th:href="@{/}">Sair do
 						Sisgecol</a></li>
-
+				<a style="font-size:20px !important" class="nav-link" th:text="'Usuário logado:    '+${usuario}"></a>
 			</ul>
 		</div>
 	</nav>
