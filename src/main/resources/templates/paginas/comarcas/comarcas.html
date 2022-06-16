@@ -36,7 +36,7 @@
 <body>
 	<div class="card">
 		<div class="card-header bg-dark">
-			<h5 style="color:white" >COMARCAS</h5>
+			<h5 style="color:white" >Comarcas Cadastradas</h5>
 		</div>
 		<div class="card-body">
 			<form>
@@ -85,7 +85,7 @@
 							<td th:text="${coma.nome}">2</td>
 							<td th:text="${coma.uf?.nome}">2</td>
 							<td class="text-center"><a type="submit" data-toggle="modal" id="btex" onclick="deleta(this,1,2);"
-													   data-target="#modal1" class="btn btn-danger"><i
+													   data-target="#modal1" class="btn btn-danger btn-sm"><i
 									class="fas fa-trash-alt" ></i></a></td>
 
 						</tr>
@@ -124,7 +124,7 @@
 	</div>
 	<!-- jQuery library -->
 	<script type="text/javascript"
-			th:src="@{/webjars/jquery/3.4.1/jquery.min.js"}></script>
+			th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
 
 	<script type="text/javascript"
 			th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>

@@ -48,7 +48,7 @@
 <body class="body">
 
 	<div class="card-header bg-dark">
-		<h5 style="color:white;">SOLICITAÇÕES</h5>
+		<h5 style="color:white;">Lista de Solcitações</h5>
 	</div>
 
 	<div class="card-body col-lg">
@@ -218,7 +218,7 @@
 					<tr th:each="soli : ${solicitacoes}">
 
 						<td class="text-center"><a type="submit" th:href="@{'/solicitacao/'+${soli.idsolicitacao}}"
-								class="btn btn-secondary"> <i th:text="${soli.idsolicitacao}"></a></td>
+								class="btn btn-secondary btn-sm"> <i th:text="${soli.idsolicitacao}"></a></td>
 						<td th:text="${soli.processo?.proceletronico=='E'?'SIM':'NÃO'}">1</td>
 						<td th:text="${soli.processo?.numeroprocesso}">1</td>
 						<td th:text="${soli.processo?.parte}">1</td>

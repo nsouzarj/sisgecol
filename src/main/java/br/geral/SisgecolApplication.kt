@@ -7,13 +7,12 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.web.WebApplicationInitializer
-import javax.servlet.FilterConfig
-import javax.servlet.ServletException
 
 
-@ComponentScan("br.controles","br.repositorios","br.servicos","br.geral")
-@EnableJpaRepositories("br.repositorios")
-@EntityScan(basePackages= arrayOf("br.entidades"))
+
+@ComponentScan("br.controllers","br.repositories","br.services","br.geral")
+@EnableJpaRepositories("br.repositories")
+@EntityScan(basePackages= arrayOf("br.entityes"))
 @SpringBootApplication
 open class SisgecolApplication : SpringBootServletInitializer() , WebApplicationInitializer
 

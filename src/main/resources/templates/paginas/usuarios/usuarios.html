@@ -30,18 +30,38 @@
 			background-color: white;
 		}
 	</style>
+	<script datatype="text/javascript" >
+	   var teste;
+		function inativaUsuario(obj,valor1,valor2){
+		  var coluna1 = $(obj).parents("tr").find("td:nth-child(" + valor1 + ")");
+		  var coluna2 = $(obj).parents("tr").find("td:nth-child(" + valor2 + ")");
+		 // window.alert("Valor "+coluna.html());
+		  teste= $(obj).parents("tr").find("td:nth-child(" + valor1 + ")");
+
+          $('#XX').html(coluna1.html()+' - '+coluna2.html() )
+		  }
+         //Confirma a exlucao
+		 function confirma(){
+           var id=teste.html();
+           window.location.href="/usuarios/inativar/"+id;
+
+		 }
+	</script>
 </head>
 
 <body>
-	<div class="card-header bg-primary"></div>
+
+	<div class="card-header bg-dark">
+		<h5 style="color:white;">Lista de Usuários</h5>
+	</div>
 	<div class="card-body">
-		<h4 class="card-title bg-basic">USUÁRIOS</h4>
+
 		<a class="btn btn-primary" th:href="@{/usuarios/cadastro}">Cadastrar</a>
 		<a class="btn btn-success" th:href="@{/menu}">Sair</a> <br />
 		<br />
 		<h4>LISTAGEM</h4>
 		<div class="table-responsive">
-			<form>
+
 				<table id="tb3" class="table table-bordered table-condensed table-striped table-hover" style="font-size: 12px">
 					<thead class="thead-dark">
 						<tr>
@@ -50,6 +70,7 @@
 							<th>LOGIN</th>
 							<th>EMAIL</th>
 							<th>TIPO</th>
+							<th>ATIVO</th>
 							<th>ALTERAR</th>
 							<th>INATIVAR</th>
 						</tr>
@@ -57,24 +78,27 @@
 					<tbody>
 					
 						<tr th:each="co,ta : ${usuario}">
-							<td th:text="${co.idusuario}">1</td>
-							<td id="nom" th:text="${co.nomecompleto}">2</td>
-							<td th:text="${co.login}">2</td>
-							<td th:text="${co.emailprincipal}">2</td>
-							<td th:text="${co.toTipo()}">2</td>
+							<td  id="id"  th:text="${co.idusuario}">1</td>
+							<td id="nome" th:text="${co.nomecompleto}">2</td>
+							<td th:text="${co.login}"></td>
+							<td th:text="${co.emailprincipal}"></td>
+							<td th:text="${co.toTipo()}"></td>
+							<td th:text="${co.toAtivo()}"></td>
 
 							<td class="text-center">
 								<a type="submit" th:href="@{'/usuarios/alterar/'+${co.idusuario}}"
-									class="btn btn-primary button"><i class="far fa-edit"></i></a>
+									class="btn btn-primary  btn-sm button"><i class="far fa-edit"></i></a>
 							</td>
 							<td class="text-center">
-								<a type="submit" data-toggle="modal" data-target="#myModal2" class="btn btn-warning"><i
-										class="fas fa-user-times"></i></a>
+								<button  th:disabled="${co.toAtivo()=='Inativo'}"  type="submit" data-toggle="modal" data-target="#myModal2"  onclick="inativaUsuario(this,1,2)"
+										class="btn btn-primary btn-sm">
+									<i class="fas fa-user-times"></i></button>
+
 							</td>
 						</tr>
 					</tbody>
 				</table>
-			</form>
+
 		</div>
 	</div>
 
@@ -93,8 +117,9 @@
 					<p>Some text in the modal.</p>
 				</div>
 				<div class="modal-footer">
+					<button type="button" class="btn btn-success" onclick="confirma();" >Sim</button>
 					<button type="button" class="btn btn-primary" data-dismiss="modal">
-						Sair
+						Não
 					</button>
 				</div>
 			</div>
@@ -107,17 +132,19 @@
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">Inativar Usuário</h4>
-					<button type="button" class="close" data-dismiss="modal">
-						&times;
-					</button>
+					<h4 class="modal-title">Inativar Usuário -   </h4>
+					<button type="submit"  class="close" data-dismiss="modal">x</button>
+
 				</div>
 				<div class="modal-body">
 					<p>Realmente Deseja Inativar o Usuário?.</p>
+					<h5 id="XX"></h5>
+
 				</div>
 				<div class="modal-footer">
+					<button type="button" class="btn btn-success" data-dismiss="modal" onclick="confirma();" >Sim</button>
 					<button type="button" class="btn btn-primary" data-dismiss="modal">
-						Sair
+						Não
 					</button>
 				</div>
 			</div>
