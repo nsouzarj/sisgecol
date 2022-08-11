@@ -64,7 +64,7 @@
 	</div>
 	<div class="card-body">
 
-		<a class="btn btn-primary" th:href="@{/usuarios/cadastro}">Cadastrar</a>
+		<a sec:authorize="hasRole('ADMIN')" class="btn btn-primary" th:href="@{/usuarios/cadastro}">Cadastrar</a>
 		<a class="btn btn-success" th:href="@{/menu}">Sair</a> <br />
 		<br />
 		<h4>LISTAGEM</h4>
@@ -79,9 +79,9 @@
 							<th>EMAIL</th>
 							<th>TIPO</th>
 							<th>STATUS</th>
-							<th>ALTERAR</th>
-							<th>INATIVAR</th>
-							<th>ATIVAR</th>
+							<th sec:authorize="hasRole('ADMIN')">ALTERAR</th>
+							<th sec:authorize="hasRole('ADMIN')">INATIVAR</th>
+							<th sec:authorize="hasRole('ADMIN')">ATIVAR</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -94,17 +94,17 @@
 							<td th:text="${co.toTipo()}"></td>
 							<td th:text="${co.toAtivo()}"></td>
 
-							<td class="text-center">
+							<td  sec:authorize="hasRole('ADMIN')" class="text-center">
 								<a type="submit" th:href="@{'/usuarios/alterar/'+${co.idusuario}}"
 									class="btn btn-primary  btn-sm button"><i class="far fa-edit"></i></a>
 							</td>
-							<td class="text-center">
+							<td  sec:authorize="hasRole('ADMIN')" class="text-center">
 								<button  th:disabled="${co.toAtivo()=='Inativo'}"  type="submit" data-toggle="modal" data-target="#myModal2"  onclick="inativarOuAtivarUsuario(this,1,2)"
 										class="btn btn-danger btn-sm">
 									<i class="far fa-thumbs-down"></i></button>
 
 							</td>
-							<td class="text-center">
+							<td  sec:authorize="hasRole('ADMIN')" class="text-center">
 								<button  th:disabled="${co.toAtivo()=='Ativo'}"  type="submit" data-toggle="modal" data-target="#myModal3"  onclick="inativarOuAtivarUsuario(this,1,2)"
 										class="btn btn-success btn-sm">
 									<i class="far fa-thumbs-up"></i></button>

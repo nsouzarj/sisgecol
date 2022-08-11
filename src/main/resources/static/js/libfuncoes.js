@@ -59,7 +59,7 @@ function Limpar(valor, validos) {
  }
  
 function sair() {
-	window.alert("Obrigado por usar o sistema de consulta de cobran�a via web volte sempre.");
+	window.alert("Obrigado por usar o sistema de consulta de cobrança via web volte sempre.");
  }
 
  /** 
