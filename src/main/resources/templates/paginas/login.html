@@ -6,10 +6,9 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="/webjars/bootstrap/4.4.1/css/bootstrap.min.css">
-
-
-
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}">
+	<!--	<link rel="stylesheet"-->
+	<!--		  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">-->
 </head>
 <style>
 	@import "bourbon";
@@ -47,7 +46,7 @@
 		padding: 10px;
 		@include box-sizing(border-box);
 
-		
+
 	}
 	.focus {
 			z-index: 2;
@@ -67,33 +66,27 @@
 </style>
 
 <body>
-	<div class="wrapper">
-		<form class="form-signin">
-			<h3 class="form-signin-heading">LOGIN DO SISTEMA</h3>
-			<input type="text" class="form-control" name="username" placeholder="Login requerido" required=""
-				autofocus="" />
-			<br />
-			<input type="password" class="form-control" name="password" placeholder="Password" required="" />
-			<label class="checkbox">
-				<input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
-			</label>
-			<a class="btn btn-lg btn-primary btn-block" th:href="@{menu}" type="submit">Login</a>
-		</form>
-	</div>
+<div class="wrapper">
+	<form class="form-signin" th:action="@{/login}" method="POST" >
+		<h3 class="form-signin-heading">LOGIN DO SISTEMA</h3>
+		<input type="text" class="form-control" name="username" placeholder="Login requerido" required=""
+			   autofocus="" />
+		<br />
+		<input type="password" class="form-control" name="password" placeholder="Password" required="" />
+		<label class="checkbox">
+			<input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+		</label>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
 
-
+	</form>
+</div>
 </body>
 <!-- jQuery library -->
-<script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="/webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
-<script type="text/javascript" th:src="@{/js/libfuncoes.js}"></script>
-
-
+<script type="text/javascript" th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/libfuncoes.js}"></script>
 <!-- Popper JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-
 <script>
 </script>
 
