@@ -33,7 +33,7 @@ open class SecurityConfig():WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity) {
         http.authorizeRequests().
         antMatchers("/WEB-INF/views/","/webjars/**","/erro/**","/swagger-ui/**","/login/**","/static/js/**","/js/libfuncoes.js").permitAll().
-        antMatchers("/menu/**","/bancas/**","/comarcas/**","/comarca","/uf/**","/tipos/**","/comarcapossui/**","/solicitacoes/**","/usuarios/**","/login/**").
+        antMatchers("/menu/**","/bancas/**","/comarcas/**","/comarca","/uf/**","/tipos/**","/comarcapossui/**","/solicitacoes/**","/usuarios/**","/login/**","/js/**").
         hasAnyRole("USER","ADMIN").and().formLogin().loginPage("/login").failureForwardUrl("/erro").failureUrl("/login?error").
         successForwardUrl("/menu")
 

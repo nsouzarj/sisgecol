@@ -1,4 +1,3 @@
-
 /*Funcao de mascara campos */
 function mascaravalor(src, mask){
 	var i = src.value.length;
