@@ -6,12 +6,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
-import org.springframework.security.core.userdetails.User
-import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.factory.PasswordEncoderFactories
 import org.springframework.security.crypto.password.PasswordEncoder
-import org.springframework.security.provisioning.InMemoryUserDetailsManager
 import org.springframework.web.servlet.ViewResolver
 import org.springframework.web.servlet.view.InternalResourceViewResolver
 
@@ -32,16 +29,12 @@ open class SecurityConfig():WebSecurityConfigurerAdapter() {
     //  http.cors().disable();
     override fun configure(http: HttpSecurity) {
         http.authorizeRequests().
-        antMatchers("/WEB-INF/views/","/webjars/**","/erro/**","/swagger-ui/**","/login/**","/static/js/**","/js/libfuncoes.js").permitAll().
-        antMatchers("/menu/**","/bancas/**","/comarcas/**","/comarca","/uf/**","/tipos/**","/comarcapossui/**","/solicitacoes/**","/usuarios/**","/login/**","/js/**").
-        hasAnyRole("USER","ADMIN").and().formLogin().loginPage("/login").failureForwardUrl("/erro").failureUrl("/login?error").
-        successForwardUrl("/menu")
-
+        antMatchers("/WEB-INF/views/","/webjars/**","/erro/**","/swagger-ui/**","/login/**","/static/**").permitAll().
+        antMatchers("/menu/**","/bancas/**","/comarcas/**","/comarca","/uf/**","/tipos/**","/comarcapossui/**","/solicitacoes/**","/usuarios/**").
+        hasAnyRole("USER","ADMIN").and().formLogin().loginPage("/login").
+        failureForwardUrl("/erro").failureUrl("/login?error").
+        defaultSuccessUrl("/menu")
     }
-
-
-
-
 
 
 

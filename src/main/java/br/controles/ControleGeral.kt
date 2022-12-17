@@ -1,12 +1,15 @@
 package br.controles
-import br.entidades.*
 
+import br.entidades.*
 import br.servicos.*
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.core.Authentication
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.ModelAndView
 import org.springframework.web.servlet.config.annotation.CorsRegistry
+
 
 @Controller
 @CrossOrigin(origins = ["*"], maxAge = 3600)
@@ -21,7 +24,7 @@ class ControleGeral {
                 .allowCredentials(true).maxAge(3600)
         registry.addMapping("/usuarios/**").allowedOrigins("*").allowedHeaders("*").exposedHeaders("*").allowedMethods("*")
                 .allowCredentials(true).maxAge(3600)
-        registry.addMapping("/static/**").allowedOrigins("*").allowedHeaders("*").exposedHeaders("*").allowedMethods("*")
+        registry.addMapping("/static/js/**").allowedOrigins("*").allowedHeaders("*").exposedHeaders("*").allowedMethods("*")
                 .allowCredentials(true).maxAge(3600)
     }
 
@@ -66,22 +69,36 @@ class ControleGeral {
     }
 
     @CrossOrigin
-    @RequestMapping("/")
-    fun loginpa(): String {
-        return "paginas/login"
+    @GetMapping("/")
+    fun loginpa():String {
+        return "redirect:/login"
     }
 
 
     @CrossOrigin
-    @RequestMapping("/login")
-    fun loginpagina(): String {
+    @GetMapping("/login")
+    fun loginpagina():String {
         return "paginas/login"
+
     }
 
     @CrossOrigin
-    @RequestMapping("/menu")
-    fun menu(): String {
-        return "paginas/menu"
+    //@RequestMapping(method = [RequestMethod.POST], value = ["/menu"])
+    @RequestMapping(method = [RequestMethod.POST], value = ["/menu"])
+    fun menuw(): ModelAndView {
+        val mv = ModelAndView("paginas/menu")
+        val username:String =getUserName().toUpperCase()
+        mv.addObject("username",username)
+        return mv
+    }
+
+    fun getUserName():String{
+        val auth: Authentication = SecurityContextHolder.getContext().authentication
+        return auth.name
+    }
+    fun isAuth():Boolean{
+        val auth: Authentication = SecurityContextHolder.getContext().authentication
+        return auth.isAuthenticated
     }
 
     @CrossOrigin
