@@ -2,46 +2,48 @@ package br.geral
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
-import org.springframework.http.HttpMethod
-import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+import org.springframework.security.core.userdetails.User
+import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.factory.PasswordEncoderFactories
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.provisioning.InMemoryUserDetailsManager
 import org.springframework.web.servlet.ViewResolver
 import org.springframework.web.servlet.view.InternalResourceViewResolver
-import javax.sql.DataSource
 
-@Configuration
-@EnableWebSecurity(debug = false)
+
 /**
  * Classe de segurança pra uso afins
  *
  * @author Nelson
  */
-open class SecurityConfig : WebSecurityConfigurerAdapter() {
 
+@EnableWebSecurity
+open class SecurityConfig():WebSecurityConfigurerAdapter() {
+
+    //  http.cors().disable
+    //  ();
     @Throws(Exception::class)
 
     //  http.cors().disable();
     override fun configure(http: HttpSecurity) {
-        http.csrf().disable().authorizeRequests().
-        antMatchers("/WEB-INF/views/","/webjars/**","/erro/**","/swagger-ui/**","/login/**","/js/**").permitAll().
-        antMatchers("/menu/**","/bancas/**","/comarcas/**","/comarca","/uf/**","/tipos/**","/comarcapossui/**","/solicitacoes/**","/usuarios/**").
-        hasAnyRole("USER","ADMIN").and().formLogin().loginPage("/login").loginProcessingUrl("/login").
-        successForwardUrl("/menu").failureForwardUrl("/").failureUrl("/");
-        //.and().authorizeRequests().antMatchers("/usuarios").hasAnyRole("ADMIN")
-        http.cors().disable();
+        http.authorizeRequests().
+        antMatchers("/WEB-INF/views/","/webjars/**","/erro/**","/swagger-ui/**","/login/**","/static/js/**","/js/libfuncoes.js").permitAll().
+        antMatchers("/menu/**","/bancas/**","/comarcas/**","/comarca","/uf/**","/tipos/**","/comarcapossui/**","/solicitacoes/**","/usuarios/**","/login/**").
+        hasAnyRole("USER","ADMIN").and().formLogin().loginPage("/login").failureForwardUrl("/erro").failureUrl("/login?error").
+        successForwardUrl("/menu")
+
     }
 
 
 
-    @Autowired
-    val data: DataSource? = null
+
+
+
 
     @Autowired
     @Throws(Exception::class)

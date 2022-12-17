@@ -67,8 +67,11 @@
 
 <body>
 <div class="wrapper">
-	<form class="form-signin" th:action="@{/login}" method="POST" >
+	<form class="form-signin" th:action="@{/login}" method="post" >
 		<h3 class="form-signin-heading">LOGIN DO SISTEMA</h3>
+		<div th:if="${param.error}" class="alert alert-error">
+			Invalid username and password.
+		</div>
 		<input type="text" class="form-control" name="username" placeholder="Login requerido" required=""
 			   autofocus="" />
 		<br />
@@ -83,9 +86,8 @@
 </body>
 <!-- jQuery library -->
 <script type="text/javascript" th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/libfuncoes.js}"></script>
 <script type="text/javascript" th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
-<script type="text/javascript" th:src="@{/static/js/libfuncoes.js}"></script>
-<!-- Popper JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script>
 </script>

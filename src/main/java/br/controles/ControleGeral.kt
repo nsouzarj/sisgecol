@@ -60,21 +60,36 @@ class ControleGeral {
 
     @CrossOrigin
     @ResponseBody
-    @RequestMapping("/pagina")
+    @RequestMapping(method = [RequestMethod.GET], value = ["/pagina"])
     fun listar(): String {
         return "pagina"
     }
 
-    /**
-     * Pagina de index
-     *
-     * @return
-     */
     @CrossOrigin
-    @RequestMapping(value = ["/"], method = [RequestMethod.GET])
-    fun index(): String {
+    @RequestMapping("/")
+    fun loginpa(): String {
         return "paginas/login"
     }
+
+
+    @CrossOrigin
+    @RequestMapping("/login")
+    fun loginpagina(): String {
+        return "paginas/login"
+    }
+
+    @CrossOrigin
+    @RequestMapping("/menu")
+    fun menu(): String {
+        return "paginas/menu"
+    }
+
+    @CrossOrigin
+    @RequestMapping("/erro")
+    fun error(): String {
+        return "/login?error"
+    }
+
 
     /**
      * Comarcas
@@ -266,7 +281,7 @@ class ControleGeral {
      * @return
      */
     @CrossOrigin
-    @GetMapping("/menu")
+    @RequestMapping(method = [RequestMethod.GET], value = ["/menu"])
     fun Menu(): String {
         return "paginas/menu"
     }
