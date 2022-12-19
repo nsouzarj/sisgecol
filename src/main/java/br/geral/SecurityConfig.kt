@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver
  * @author Nelson
  */
 
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 open class SecurityConfig():WebSecurityConfigurerAdapter() {
 
     //  http.cors().disable
@@ -28,12 +28,29 @@ open class SecurityConfig():WebSecurityConfigurerAdapter() {
 
     //  http.cors().disable();
     override fun configure(http: HttpSecurity) {
-        http.authorizeRequests().
-        antMatchers("/WEB-INF/views/","/webjars/**","/erro/**","/swagger-ui/**","/login/**","/static/**").permitAll().
-        antMatchers("/menu/**","/bancas/**","/comarcas/**","/comarca","/uf/**","/tipos/**","/comarcapossui/**","/solicitacoes/**","/usuarios/**").
-        hasAnyRole("USER","ADMIN").and().formLogin().loginPage("/login").
-        failureForwardUrl("/erro").failureUrl("/login?error").
-        defaultSuccessUrl("/menu")
+
+//        http.authorizeRequests().
+//        antMatchers("/WEB-INF/views/","/webjars/**","/erro/**","/swagger-ui/**","/login/**","/static/src/**").permitAll().
+//        antMatchers("/menu/**","/bancas/**","/comarcas/**","/comarca","/uf/**","/tipos/**","/comarcapossui/**","/solicitacoes/**","/usuarios/**","/static/**").
+//        hasAnyRole("USER","ADMIN").and().formLogin().loginPage("/login").
+//        failureForwardUrl("/erro").failureUrl("/login?error").
+//        successForwardUrl("/menu")
+
+        http.csrf().disable().authorizeRequests().
+        antMatchers("/WEB-INF/views/","/webjars/**","/erro/**","/swagger-ui/**","/login/**","/js/**","/pagina/**").permitAll().
+        antMatchers("/", "/favicon.ico", "/menu/**","/bancas/**","/comarcas/**","/comarca","/uf/**","/tipos/**","/comarcapossui/**","/solicitacoes/**","/usuarios/**","/menupricipal/**","/index/**").
+        hasAnyRole("USER","ADMIN").
+        and().formLogin().loginPage("/login").
+        // defaultSuccessUrl("/menu").
+        //successForwardUrl("/menu").usernameParameter("username").
+        //failureForwardUrl("/login").
+        //failureUrl("/login?error").
+        and().logout().logoutUrl("/logout").
+        logoutSuccessUrl("/login?logout").invalidateHttpSession(true).permitAll().
+            deleteCookies("JSESSIONID")
+        //.and().authorizeRequests().antMatchers("/usuarios").hasAnyRole("ADMIN")
+        http.cors().disable();
+
     }
 
 
@@ -41,19 +58,16 @@ open class SecurityConfig():WebSecurityConfigurerAdapter() {
     @Autowired
     @Throws(Exception::class)
     override fun configure(builder: AuthenticationManagerBuilder)  {
-
-        println("Entrei....")
+        println("Entrei de  novo....")
 //        builder.jdbcAuthentication().dataSource(data).passwordEncoder(BCryptPasswordEncoder())
 //                .usersByUsernameQuery(
 //                        "select emailprincipal, senha as password, ativo from usuario where emailprincipal=?")
 //                .authoritiesByUsernameQuery(
 //                        "select emailprincipal, senha as password, ativo  from usuario where emailprincipal=?")
-
         builder.inMemoryAuthentication()
             .withUser("admin").password(passwordEncoder()?.encode("admin")).roles("ADMIN").
             and()
             .withUser("user").password(passwordEncoder()?.encode("user")).roles("USER")
-
     }
 
 

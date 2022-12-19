@@ -73,9 +73,9 @@ class ControleSolicitacao {
      * @return
      */
     @CrossOrigin
-    @RequestMapping(method = [RequestMethod.GET], value = ["/solicitacoes"])
-    fun BuscaSolicitacoes(): ModelAndView {
-        val solicitacoes = servicoSolicitacao!!.findAll()
+    @RequestMapping(method = [RequestMethod.GET], value = ["/solicitacoes/{page}/{max}"])
+    fun BuscaSolicitacoes(@PathVariable("page") page: Int, @PathVariable("max") max: Int  ): ModelAndView {
+        val solicitacoes = servicoSolicitacao!!.findAll(page,max)
         val correspondentes = servicoCorrespondente!!.findAll()
         val comarcas = servicoComarca!!.findAll()
         val status = servicoStatusSolicitacao!!.findAll()

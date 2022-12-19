@@ -68,8 +68,11 @@
 <div class="wrapper">
 	<form class="form-signin" th:action="@{/login}" method="POST"  >
 		<h3 class="form-signin-heading">LOGIN DO SISTEMA</h3>
-		<div th:if="${param.error}" class="alert alert-error">
+		<div style="color:red; font-size: 16px;" th:if="${param.error}" class="alert alert-error">
 			Usuário inválido ou senha errada !!
+		</div>
+		<div style="color:green; font-size: 16px;" th:if="${param.logout}" class="alert alert-error">
+			Logout foi bem sucedido!!
 		</div>
 		<input type="text" class="form-control" name="username" placeholder="Login requerido" required=""
 			   autofocus="" />

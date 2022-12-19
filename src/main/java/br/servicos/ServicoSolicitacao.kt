@@ -14,8 +14,8 @@ class ServicoSolicitacao {
      @Autowired
      var entityManager: EntityManager? = emf?.createEntityManager()
    
-    fun findAll(): List<Solicitacao?> {
-        return entityManager!!.createQuery("from Solicitacao where datasolictacao > '11/11/2018' order by datasolictacao asc ").setFirstResult(0).setMaxResults(300).resultList as List<Solicitacao?>
+    fun findAll(page:Int,max:Int): List<Solicitacao?> {
+        return entityManager!!.createQuery("from Solicitacao  order by idsolicitacao desc").setFirstResult(page).setMaxResults(max).resultList as List<Solicitacao?>
     }
 
     fun findById(idsolicitacao: Int?): Solicitacao {

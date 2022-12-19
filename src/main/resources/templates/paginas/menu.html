@@ -45,18 +45,21 @@
 					class="nav-link dropdown-toggle" href="#" id="navbardrop2"
 					data-toggle="dropdown"> Solicitações </a>
 				<div class="dropdown-menu">
-					<a class="dropdown-item"  th:href="@{solicitacoes/1/10}">Busca
-						Solicitações</a> <a class="dropdown-item" th:href="@{comarcas}">Relatório
+					<a class="dropdown-item"  th:href="@{solicitacoes/1/20}">Busca
+						Solicitações</a>
+					<a class="dropdown-item" th:href="@{comarcas}">Relatório
 					Pendentes</a> <a class="dropdown-item" th:href="@{usuarios}">Relatório
 					Aud. de Audiências</a>
 
 				</div></li>
 			<li class="nav-item">
-				<a class="nav-link"  th:href="@{/}">Sair do
+				<a class="nav-link"  th:href="@{/logout}">Sair do
 					Sisgecol</a>
 			</li>
 			<li class="nav-item" sec:authorize="isAuthenticated()" >
-				<a class="nav-link" style="color:white !important;"  th:text="'Usuário Logado:'+' '+ ${username}"></span> </a>
+				<a class="nav-link" style="color:white !important;"  th:text="'Usuário Logado:'+' '+ ${username}">
+					<div sec:authentication="name">
+				</span> </a>
 			</li>
 
 

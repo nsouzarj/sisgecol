@@ -80,9 +80,9 @@ class ApiJsonControle {
      * @return
      */
     @CrossOrigin
-    @RequestMapping("/solicitacao/todas")
-    fun findAllSoli(): List<Solicitacao?>? {
-        return servicoSolicitacao!!.findAll()
+    @RequestMapping("/solicitacao/todas/{page}/{max}")
+    fun findAllSoli(@PathVariable("page") page: Int, @PathVariable("max") max: Int  ): List<Solicitacao?>? {
+        return servicoSolicitacao!!.findAll(page,max)
     }
 
     /**

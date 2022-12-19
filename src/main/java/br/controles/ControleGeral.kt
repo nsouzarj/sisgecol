@@ -3,6 +3,7 @@ package br.controles
 import br.entidades.*
 import br.servicos.*
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Bean
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Controller
@@ -71,23 +72,27 @@ class ControleGeral {
     @CrossOrigin
     @GetMapping("/")
     fun loginpa():String {
-        return "redirect:/login"
+        return "redirect:/menu"
     }
 
 
     @CrossOrigin
     @GetMapping("/login")
     fun loginpagina():String {
-        return "paginas/login"
+       return  "paginas/login"
 
     }
 
+
+
+
     @CrossOrigin
-    //@RequestMapping(method = [RequestMethod.POST], value = ["/menu"])
-    @RequestMapping(method = [RequestMethod.POST], value = ["/menu"])
-    fun menuw(): ModelAndView {
+    //@RequestMapping("/menu", method = [RequestMethod.POST])
+    @GetMapping("/menu")
+    //@RequestMapping("/menu", method = [RequestMethod.POST] )
+    fun menu(): ModelAndView {
+        val username=getUserName().toUpperCase()
         val mv = ModelAndView("paginas/menu")
-        val username:String =getUserName().toUpperCase()
         mv.addObject("username",username)
         return mv
     }
@@ -102,9 +107,24 @@ class ControleGeral {
     }
 
     @CrossOrigin
+    @GetMapping("/index")
+    fun index(): String {
+        return "redirect:/menu"
+    }
+
+
+    @CrossOrigin
     @RequestMapping("/erro")
     fun error(): String {
         return "/login?error"
+    }
+
+
+
+    @CrossOrigin
+    @RequestMapping("/logout")
+    fun logout(): String {
+        return "/login&logout"
     }
 
 
@@ -293,15 +313,6 @@ class ControleGeral {
         return mv
     }
 
-    /**
-     * Retorna ao menu
-     * @return
-     */
-    @CrossOrigin
-    @RequestMapping(method = [RequestMethod.GET], value = ["/menu"])
-    fun Menu(): String {
-        return "paginas/menu"
-    }
 
    @CrossOrigin
    @RequestMapping(method = [RequestMethod.POST], value = ["/comarcas/cadastro"])
