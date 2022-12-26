@@ -253,29 +253,29 @@
 							Histórico
 						</div>
 						<div class="card-body"  >		
-		
-							<table id="tb1"
-								class="table table-bordered table-condensed table-striped table-hover"
-								style="font-size: 12px;">
-								<thead class="table-dark">
-									<tr>
-										<th>ID HISTÓRICO</th>
-										<th>DATA</th>
-										<th>USUÀRIO</th>
-										<th>TEXTO</th>
-										<th>STATUS</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr th:each="hi : ${historico}">
-										<td th:text="${hi.idhistorico}">1</td>
-										<td th:text="${#calendars.format(hi.datahistorico,'dd/MM/yyyy  HH:mm')}">1</td>
-										<td th:text="${hi.usuario.login}">2</td>
-										<td th:text="${hi.textohistorico}">2</td>
-										<td th:text="${hi.statusSolicitacao.status}">2</td>
-									</tr>
-								</tbody>
-							</table>
+		                    <div class="table-responsive">
+								<table id="tb1" class="table table-bordered table-condensed table-striped table-hover"
+									style="font-size: 12px;">
+									<thead class="table-dark">
+										<tr>
+											<th>ID HISTÓRICO</th>
+											<th>DATA</th>
+											<th>USUÀRIO</th>
+											<th>TEXTO</th>
+											<th>STATUS</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="hi : ${historico}">
+											<td th:text="${hi.idhistorico}">1</td>
+											<td th:text="${#calendars.format(hi.datahistorico,'dd/MM/yyyy  HH:mm')}">1</td>
+											<td th:text="${hi.usuario.login}">2</td>
+											<td th:text="${hi.textohistorico}">2</td>
+											<td th:text="${hi.statusSolicitacao.status}">2</td>
+										</tr>
+									</tbody>
+								</table>
+						</div>
 						</div>
 					<div>	
 
@@ -289,7 +289,7 @@
 			
 							<div class="table-responsive">
 								<table id="tb2"
-									class="table table-bordered table-condensed table-striped table-hover"
+									class="table table-responsive table-bordered table-condensed table-striped table-hover"
 									style="font-size: 12px;">
 									<thead class="table-dark">
 										<tr>
@@ -328,7 +328,8 @@
 
 									</tbody>
 								</table>
-							</div>
+							</div>	
+							
 					</div>	
 								
 			</div>
