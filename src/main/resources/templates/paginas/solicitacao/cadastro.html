@@ -8,9 +8,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-	<link rel="stylesheet" href="/webjars/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
 	<script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
-	<script type="text/javascript" src="/webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
 
 	<script type="text/javascript" th:src="@{/js/libfuncoes.js}"></script>
 	<!-- Popper JS -->
@@ -70,206 +70,267 @@
 			th:href="@{/solicitacoes/1/20}">Sair</a> <br />
 		<br /> <br />
 
-		<form th:object="${soliunica}" class="row">
+		<div class="accordion" >
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="headingOne1">
+					<h2 class="accordion-header" id="headingOne">
+						<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+							Solicitaçao
+						</button>
+					</h2>
 
-			<div class="form-group col-sm-6">
-				<label id="teste" class="mr-sm-2">Id Solicitação:</label> <label id="id" class="mr-sm-2"
-					th:text="*{idsolicitacao}"></label>
-			</div>
+					<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+						<div class="accordion-body">
 
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Usuário: </label> <label class="mr-sm-2" th:text="*{usuario.login}"></label>
-			</div>
+							<form th:object="${soliunica}" class="row">
 
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Número do Processo: </label> <label class="mr-sm-2"
-					th:text="*{processo?.numeroprocesso}"></label>
+								<div class="card">
+									<div class="card-header">
+										Dados do Processo
+									</div>
+									<div class="card-body"  >
+										<div>
+											<div class="form-group col-sm-6">
+												<label class="mr-sm-2">Número do Processo: </label> <label class="mr-sm-2"
+																										   th:text="*{processo?.numeroprocesso}"></label>
 
-			</div>
+											</div>
 
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Autor: </label> <label class="mr-sm-2" th:text="*{processo?.parte}"></label>
+											<div class="form-group col-sm-6">
+												<label class="mr-sm-2">Autor: </label> <label class="mr-sm-2" th:text="*{processo?.parte}"></label>
 
-			</div>
+											</div>
 
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Réu: </label> <label class="mr-sm-2" th:text="*{processo?.adverso}"></label>
-			</div>
+											<div class="form-group col-sm-6">
+												<label class="mr-sm-2">Réu: </label> <label class="mr-sm-2" th:text="*{processo?.adverso}"></label>
+											</div>
 
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Assunto: </label> <label class="mr-sm-2" th:text="*{processo?.assunto}"></label>
-			</div>
+											<div class="form-group col-sm-6">
+												<label class="mr-sm-2">Assunto: </label> <label class="mr-sm-2" th:text="*{processo?.assunto}"></label>
+											</div>
 
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Cadastro: </label> <label class="mr-sm-2"
-					th:text="*{processo?.cartorio}"></label>
-			</div>
+											<div class="form-group col-sm-6">
+												<label class="mr-sm-2">Cadastro: </label> <label class="mr-sm-2"
+																								 th:text="*{processo?.cartorio}"></label>
+											</div>
 
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Localização: </label> <label class="mr-sm-2"
-					th:text="*{processo?.localizacao}"></label>
-			</div>
+											<div class="form-group col-sm-6">
+												<label class="mr-sm-2">Localização: </label> <label class="mr-sm-2"
+																									th:text="*{processo?.localizacao}"></label>
+											</div>
 
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Comarca: </label> <label class="mr-sm-2"
-					th:text="*{processo?.comarca.nome+' - '+processo?.comarca.uf.sigla}"></label>
-			</div>
+											<div class="form-group col-sm-6">
+												<label class="mr-sm-2">Comarca: </label> <label class="mr-sm-2"
+																								th:text="*{processo?.comarca.nome+' - '+processo?.comarca.uf.sigla}"></label>
+											</div>
 
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Orgão: </label> <label class="mr-sm-2"
-					th:text="*{processo?.numorgao +' - '+processo?.orgao.descricao }"></label>
-			</div>
+											<div class="form-group col-sm-6">
+												<label class="mr-sm-2">Orgão: </label> <label class="mr-sm-2"
+																							  th:text="*{processo?.numorgao +' - '+processo?.orgao.descricao }"></label>
+											</div>
 
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Correspoendente: </label> <label class="mr-sm-2"
-					th:text="*{renumeracao.tipoSolicitacaoCorrespondente.correspondente.nome}"></label>
-			</div><!-- Popper JS -->
 
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Tipo Solictação: </label> <label class="mr-sm-2"
-					th:text="*{renumeracao.tipoSolicitacaoCorrespondente.tipoSolicitacao.especie+' - '+renumeracao.tipoSolicitacaoCorrespondente.tipoSolicitacao.tipo}"></label>
-			</div>
+										</div>
+										<a href="#" class="btn btn-primary">Buscar Processo</a>
+									</div>
+								</div>
 
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Envio: </label> <label class="mr-sm-2"
-					th:text="*{enviosolicitacao?.tipoenvio}"></label>
-			</div>
+								<div class="card">
+									<div class="card-header">
+										Dados da Solitaçao
+									</div>
+									<div class="card-body">
+										<div class="form-group col-sm-6">
+											<label id="teste" class="mr-sm-2">Id Solicitação:</label> <label id="id" class="mr-sm-2"
+												th:text="*{idsolicitacao}"></label>
+										</div>
 
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Proposta de Acordo: </label> <label class="mr-sm-2"
-					th:text="*{propostaacordo==true?'SIM':'NÃO'}"></label>
-			</div>
+										<div class="form-group col-sm-6">
+											<label class="mr-sm-2">Usuário: </label> <label class="mr-sm-2" th:text="*{usuario.login}"></label>
+										</div>
 
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Grupo: </label> <label class="mr-sm-2" th:text="*{grupo}"></label>
-			</div>
 
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Data da Diligência/Audiência: </label> <label class="mr-sm-2" th:text="*{#calendars.format(datasolictacao,'dd/MM/yyyy  HH:mm')}"></label>
+										<div class="form-group col-sm-6">
+											<label class="mr-sm-2">Correspoendente: </label> <label class="mr-sm-2"
+												th:text="*{renumeracao.tipoSolicitacaoCorrespondente.correspondente.nome}"></label>
+										</div><!-- Popper JS -->
+
+										<div class="form-group col-sm-6">
+											<label class="mr-sm-2">Tipo Solictação: </label> <label class="mr-sm-2"
+												th:text="*{renumeracao.tipoSolicitacaoCorrespondente.tipoSolicitacao.especie+' - '+renumeracao.tipoSolicitacaoCorrespondente.tipoSolicitacao.tipo}"></label>
+										</div>
+
+										<div class="form-group col-sm-6">
+											<label class="mr-sm-2">Envio: </label> <label class="mr-sm-2"
+												th:text="*{enviosolicitacao?.tipoenvio}"></label>
+										</div>
+
+										<div class="form-group col-sm-6">
+											<label class="mr-sm-2">Proposta de Acordo: </label> <label class="mr-sm-2"
+												th:text="*{propostaacordo==true?'SIM':'NÃO'}"></label>
+										</div>
+
+										<div class="form-group col-sm-6">
+											<label class="mr-sm-2">Grupo: </label> <label class="mr-sm-2" th:text="*{grupo}"></label>
+										</div>
+
+										<div class="form-group col-sm-6">
+											<label class="mr-sm-2">Data da Diligência/Audiência: </label> <label class="mr-sm-2" th:text="*{#calendars.format(datasolictacao,'dd/MM/yyyy  HH:mm')}"></label>
+										</div>
+
+										<div class="form-group col-sm-6">
+											<label class="mr-sm-2">Data Prazo da Diligência/Audiência: </label>
+											<label class="mr-sm-2"
+												th:text="*{#calendars.format(dataprazo,'dd/MM/yyyy  HH:mm')}"></label>
+										</div>
+
+										<div class="form-group col-sm-6">
+											<label class="mr-sm-2">Hora da Diligência/Audiência: </label> <label
+												class="mr-sm-2" th:text="*{horaudiencia}"></label>
+										</div>
+
+										<div class="form-group col-sm-6">
+											<label class="mr-sm-2">Status do Correspondente: </label> <label
+												class="mr-sm-2" th:text="*{statusexterno}"></label>
+										</div>
+
+										<div class="form-group col-sm-6">
+											<label class="mr-sm-2">Status Interno: </label> <label
+												class="mr-sm-2" th:text="*{statusSolicitacao.status}"></label>
+										</div>
+
+										<div class="form-group col-sm-6">
+											<label class="mr-sm-2">Processo Eletrônico: </label> <label
+												class="mr-sm-2"
+												th:text="*{processo?.proceletronico=='E'?'SIM':'NÃO'}"></label>
+										</div>
+
+										<div class="form-group col-sm-6">
+											<label class="mr-sm-2">Banca Responsável: </label> <label
+												class="mr-sm-2" th:text="*{bancaProcesso?.banca}"></label>
+										</div>
+                                        
+									<div class="row">
+
+										<div class="form-group col-sm-6">
+											
+											<div class="card">
+												<div class="card-header">
+													Instruções da Solicitação:
+												</div>
+												<div class="card-body"  >
+
+													<div  style="border-right: 5px; border: solid 1px; border-color: blue;  border-radius: 5px">
+													  <label		style="border-right: 5px; color: navy;" class="mr-sm-2" th:text="*{instrucoes}"></label>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group col-sm-6 ">
+											
+											<div class="card">
+												<div class="card-header">
+														Observação da Solicitação
+												</div>
+													<div class="card-body"  >
+
+														<div  style=" border: solid 1px; border-color: blue; border-radius: 5px">
+														  <label	style="border-right: 5px; color: navy;" class="mr-sm-2" th:text="*{observacao}"></label>
+														 </div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								 </div>
+							</form>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-header">
+							Histórico
+						</div>
+						<div class="card-body"  >		
+		
+							<table id="tb1"
+								class="table table-bordered table-condensed table-striped table-hover"
+								style="font-size: 12px;">
+								<thead class="table-dark">
+									<tr>
+										<th>ID HISTÓRICO</th>
+										<th>DATA</th>
+										<th>USUÀRIO</th>
+										<th>TEXTO</th>
+										<th>STATUS</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="hi : ${historico}">
+										<td th:text="${hi.idhistorico}">1</td>
+										<td th:text="${#calendars.format(hi.datahistorico,'dd/MM/yyyy  HH:mm')}">1</td>
+										<td th:text="${hi.usuario.login}">2</td>
+										<td th:text="${hi.textohistorico}">2</td>
+										<td th:text="${hi.statusSolicitacao.status}">2</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					<div>	
+
 			</div>
 			
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Data Prazo da Diligência/Audiência: </label>
-				<label class="mr-sm-2"
-					th:text="*{#calendars.format(dataprazo,'dd/MM/yyyy  HH:mm')}"></label>
-			</div>
+				<div class="card">
+					<div class="card-header">
+						Arquivos Enviados e Recebido
+					</div>
+						<div class="card-body"  >		
 			
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Hora da Diligência/Audiência: </label> <label
-					class="mr-sm-2" th:text="*{horaudiencia}"></label>
-			</div>
-			
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Status do Correspondente: </label> <label
-					class="mr-sm-2" th:text="*{statusexterno}"></label>
-			</div>
-			
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Status Interno: </label> <label
-					class="mr-sm-2" th:text="*{statusSolicitacao.status}"></label>
-			</div>
-			
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Processo Eletrônico: </label> <label
-					class="mr-sm-2"
-					th:text="*{processo?.proceletronico=='E'?'SIM':'NÃO'}"></label>
-			</div>
-			
-			<div class="form-group col-sm-6">
-				<label class="mr-sm-2">Banca Responsável: </label> <label
-					class="mr-sm-2" th:text="*{bancaProcesso?.banca}"></label>
-			</div>
+							<div class="table-responsive">
+								<table id="tb2"
+									class="table table-bordered table-condensed table-striped table-hover"
+									style="font-size: 12px;">
+									<thead class="table-dark">
+										<tr>
+											<th>NOME DO ARQUIVO</th>
+											<th>DATA</th>
+											<th>USUÁRIO</th>
+											<th>OPERAÇÃO</th>
+											<th>LINK</th>
+											<th>BAIXAR</th>
+											<th>EXCLUIR</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="arq : ${arquivo}" id="tab1">
+											<td
+												th:text="${arq.solicitacaoPossuiArquivo.solicitacaoAnexo.nomearquivo}" id="nmarq">1</td>
+											<td
+												th:text="${#calendars.format(arq.solicitacaoPossuiArquivo.solicitacaoAnexo.datasolicitacao,'dd/MM/yyyy  HH:mm')}">1</td>
+											<td
+											th:text="${arq.solicitacaoPossuiArquivo.solicitacaoAnexo.usuario?.login}" id="ss">1</td>
+											<td
+												th:text="${arq.solicitacaoPossuiArquivo.solicitacaoAnexo.operacao}">1</td>
 
-			<div class="form-group col-sm-6">
-				
-				<label class="mr-sm-2"> Instruções da Solicitação: </label> 
-				<div  style="border: solid; border-color: black;">
-				  <label		style="color: navy;" class="mr-sm-2" th:text="*{instrucoes}"></label>
-			    </div>
-				 
-			</div>
+											<td
+												th:text="${arq.solicitacaoPossuiArquivo.solicitacaoAnexo.linkarquivo}">2</td>
 
-			<div class="form-group col-sm-6 ">
-				<label class="mr-sm-2"> Observação da Solicitação: </label>
-				<div  style="border: solid; border-color: black;">
-				  <label	style="color: navy;" class="mr-sm-2" th:text="*{observacao}"></label>
-				 </div>
-			</div>
+											<td class="text-center"><a type="submit" data-toggle="modal"
+												data-target="#modal1" class="btn btn-warning"><i
+													class="fas fa-file-download"></i></a></td>
 
-		</form>
-		<h5 style="font-family: Arial, Helvetica, sans-serif;">
-			Histórico</h5>
-			<div class="table-responsive">
-				<div class="table-responsive">
-					<table id="tb1"
-						class="table table-bordered table-condensed table-striped table-hover"
-						style="font-size: 12px;">
-						<thead class="thead-dark">
-							<tr>
-								<th>ID HISTÓRICO</th>
-								<th>DATA</th>
-								<th>USUÀRIO</th>
-								<th>TEXTO</th>
-								<th>STATUS</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="hi : ${historico}">
-								<td th:text="${hi.idhistorico}">1</td>
-								<td th:text="${#calendars.format(hi.datahistorico,'dd/MM/yyyy  HH:mm')}">1</td>
-								<td th:text="${hi.usuario.login}">2</td>
-								<td th:text="${hi.textohistorico}">2</td>
-								<td th:text="${hi.statusSolicitacao.status}">2</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-
-			</div>
-			<h5 style="font-family: Arial, Helvetica, sans-serif;">Arquivos
-				Enviados e Recebidos</h5>
-
-			<div class="table-responsive">
-				<table id="tb2"
-					class="table table-bordered table-condensed table-striped table-hover"
-					style="font-size: 12px;">
-					<thead class="thead-dark">
-						<tr>
-							<th>NOME DO ARQUIVO</th>
-							<th>DATA</th>
-							<th>USUÁRIO</th>
-							<th>OPERAÇÃO</th>
-							<th>LINK</th>
-							<th>BAIXAR</th>
-							<th>EXCLUIR</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="arq : ${arquivo}" id="tab1">
-							<td
-								th:text="${arq.solicitacaoPossuiArquivo.solicitacaoAnexo.nomearquivo}" id="nmarq">1</td>
-							<td
-								th:text="${#calendars.format(arq.solicitacaoPossuiArquivo.solicitacaoAnexo.datasolicitacao,'dd/MM/yyyy  HH:mm')}">1</td>
-							<td
-							   th:text="${arq.solicitacaoPossuiArquivo.solicitacaoAnexo.usuario?.login}" id="ss">1</td>
-							<td
-								th:text="${arq.solicitacaoPossuiArquivo.solicitacaoAnexo.operacao}">1</td>
-
-							<td
-								th:text="${arq.solicitacaoPossuiArquivo.solicitacaoAnexo.linkarquivo}">2</td>
-
-							<td class="text-center"><a type="submit" data-toggle="modal"
-								data-target="#modal1" class="btn btn-warning"><i
-									class="fas fa-file-download"></i></a></td>
-
-							<td class="text-center"><a type="submit" data-toggle="modal" id="btex" onclick="deleta(this,1);"
-								data-target="#modal1" class="btn btn-danger"><i
-									class="fas fa-trash-alt" ></i></a></td>
-						</tr>
+											<td class="text-center"><a type="submit" data-toggle="modal" id="btex" onclick="deleta(this,1);"
+												data-target="#modal1" class="btn btn-danger"><i
+													class="fas fa-trash-alt" ></i></a></td>
+										</tr>
 
 
-					</tbody>
-				</table>
+									</tbody>
+								</table>
+							</div>
+					</div>	
+								
 			</div>
 			<!--Mostra o modal da alteração-->
 			<div class="modal fade " id="modal1">

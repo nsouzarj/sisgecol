@@ -7,8 +7,10 @@ import javax.persistence.Embeddable
 import javax.persistence.FetchType
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
+import lombok.Data
 
 @Embeddable
+@Data
 class SolicitacaoPossuiArquivo : Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @Cascade(CascadeType.SAVE_UPDATE)
@@ -19,18 +21,6 @@ class SolicitacaoPossuiArquivo : Serializable {
     @Cascade(CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "idarquivoanexo")
     var solicitacaoAnexo: SolicitacaoAnexo? = null
-
-    constructor()
-    constructor(solicitacao: Solicitacao?,
-                solicitacaoAnexo: SolicitacaoAnexo?) {
-        this.solicitacao = solicitacao
-        this.solicitacaoAnexo = solicitacaoAnexo
-    }
-
-    override fun toString(): String {
-        return ("SolicitacaoPossuiArquivo [solicitacao=" + solicitacao
-                + ", solicitacaoAnexo=" + solicitacaoAnexo + "]")
-    }
 
     companion object {
         private const val serialVersionUID = 1L

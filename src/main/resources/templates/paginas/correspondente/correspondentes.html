@@ -6,8 +6,12 @@
 	<title>Correspondentes</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+    <script type="text/javascript" src="/webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+
 
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css" />
 	
@@ -34,12 +38,12 @@
 
       
 		<form>
-			<div class="form-group">
+			<div class="form-group col-sm-6">
 				<label >Correspondente:</label> <input type="text" class="form-control" id="colab">
 			</div>
-			<div class="form-group">
+			<div class="form-group col-sm-6">
 				<label>Comarca:</label>
-				<select class="form-control" id="sel">
+				<select class="form-select " id="sel">
 				     <option value="0">SELECIONE UMA COMARCA</option>
 					 <option th:each="comarca: ${com}" th:value=${comarca.idcomarca} th:text="${comarca.nome + ' - '+comarca.uf.sigla}">AMAZONAS	</option>
 				</select>
@@ -54,8 +58,8 @@
 		<h4>LISTAGEM</h4>
 		<div class="table-responsive">
 			<table id="tb1" style="font-size: 12px;"
-				class="table table-bordered table-condensed table-striped table-hover">
-				<thead class="thead-dark">
+				class="table  table-bordered  table-condensed table-hover table-striped table-responsive">
+				<thead class="table-dark">
 					<tr>
 						<th>ID</th>
 						<th>NOME</th>
@@ -85,14 +89,14 @@
 
 	<!-- jQuery library -->
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
 
 	<!-- Popper JS -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
+	
+	
 	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
 	<script type="text/javascript"
 		src="https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"></script>

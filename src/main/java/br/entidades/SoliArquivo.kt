@@ -4,9 +4,11 @@ import java.io.Serializable
 import javax.persistence.EmbeddedId
 import javax.persistence.Entity
 import javax.persistence.Table
+import lombok.Data
 
 @Entity
 @Table(name = "arquivoanexado")
+@Data
 class SoliArquivo : Serializable {
     @EmbeddedId
     var solicitacaoPossuiArquivo: SolicitacaoPossuiArquivo? = null

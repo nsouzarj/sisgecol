@@ -3,8 +3,10 @@ package br.backup
 import java.io.Serializable
 import javax.persistence.*
 
+
 @Entity
 @Table(name = "comarca")
+
 @SequenceGenerator(name = "seqcomarca", sequenceName = "idcomarca", allocationSize = 1, initialValue = 1)
 class Comarca : Serializable {
     @Id

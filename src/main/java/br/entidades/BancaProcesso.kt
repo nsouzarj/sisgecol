@@ -2,9 +2,11 @@ package br.entidades
 
 import java.io.Serializable
 import javax.persistence.*
+import lombok.Data
 
 @Entity
 @Table(name = "bancaprocesso")
+@Data
 @SequenceGenerator(name = "seqbanca", sequenceName = "idbanca", allocationSize = 1, initialValue = 1)
 class BancaProcesso : Serializable {
     @Id
@@ -41,34 +43,6 @@ class BancaProcesso : Serializable {
         return result
     }
 
-    override fun equals(obj: Any?): Boolean {
-        if (this === obj) return true
-        if (obj == null) return false
-        if (javaClass != obj.javaClass) return false
-        val other = obj as BancaProcesso
-        if (ativa != other.ativa) return false
-        if (banca == null) {
-            if (other.banca != null) return false
-        } else if (banca != other.banca) return false
-        if (descricao == null) {
-            if (other.descricao != null) return false
-        } else if (descricao != other.descricao) return false
-        if (email == null) {
-            if (other.email != null) return false
-        } else if (email != other.email) return false
-        if (emailgestordabanca == null) {
-            if (other.emailgestordabanca != null) return false
-        } else if (emailgestordabanca != other.emailgestordabanca) return false
-        if (idbanca == null) {
-            if (other.idbanca != null) return false
-        } else if (idbanca != other.idbanca) return false
-        return true
-    }
-
-    override fun toString(): String {
-        return ("BancaProcesso [idbanca=" + idbanca + ", banca=" + banca + ", descricao=" + descricao + ", ativa="
-                + ativa + ", email=" + email + ", emailgestordabanca=" + emailgestordabanca + "]")
-    }
 
     companion object {
         /**

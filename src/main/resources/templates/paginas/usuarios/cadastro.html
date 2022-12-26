@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="/webjars/bootstrap/4.4.1/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css" />
 
 
 <script>
@@ -33,9 +33,9 @@
 			<form th:object="${usuariounico}" enctype="multipart/form-data">
 
 				<div class="form-group col-xs-12">
-					<div class="form-group">
-						<label for="sel1">Tipo de Usuário</label> <select
-							onChange="pega();" class="form-control" id="sel1" accesskey="">
+					<div class="form-group col-sm-3">
+						<label for="sel1">Tipo de Usuário</label>
+						 <select onChange="pega();" class="form-select" id="sel1" accesskey="">
 							<option style="color: blue;" value="0">Selecione o Tipo</option>
 							<option value="1">Administrador</option>
 							<option value="2">Advogado Interno</option>
@@ -44,9 +44,9 @@
 						</select>
 					</div>
 
-					<div class="form-group " id="cor1">
+					<div class="form-group  col-sm-6" id="cor1">
 						<label for="sel1">Selecione um Correspondente:</label> <select
-							class="form-control" id="sel2" onChange="copia();">
+							class="form-select" id="sel2" onChange="copia();">
 							<option value="0">SELECIONE UM CORRESPONDENTE.</option>
 							<option th:object="${corr}" th:each="cor: ${corr}"
 								th:value=${cor.idcorrespondente} th:text=${cor.nome}></option>
@@ -55,24 +55,30 @@
 
 
 					<p />
-					<label for="tipo">Nome do Usuário:</label> <input type="text"
+					<label for="tipo">Nome do Usuário:</label> 
+					<div class="form-group  col-sm-6">
+					<input type="text"
 						name="nomecompleto" th:text="${nomecompleto}"
 						onkeyup="this.value = this.value.toUpperCase();"
 						class="form-control input-sm uppercase" id="nome"> <label
-						for="nome">Login:</label> <input type="text" name="login"
+						for="nome">Login:</label> 
+					<input type="text" name="login"
 						onkeyup="this.value = this.value.toLowerCase();"
-						class="form-control input-sm uppercase" id="login"> <label
-						for="nome">E-Mail:</label> <input type="email" name="email"
+						class="form-control input-sm uppercase " id="login"> <label
+						for="nome">E-Mail:</label>
+					<input type="email" name="email"
 						onkeyup="this.value = this.value.toLowerCase();"
-						class="form-control input-sm uppercase" id="email"> <label
-						for="nome">Senha:</label> <input type="password" name="email"
+						class="form-control input-sm uppercase " id="email"> <label
+						for="nome">Senha:</label>	
+					<input type="password" name="email"
 						onkeyup="this.value = this.value.toLowerCase();"
 						class="form-control input-sm uppercase" id="senha"> <label
 						for="nome">Confirma Senha:</label> <input type="password"
 						name="email" onkeyup="this.value = this.value.toLowerCase();"
-						class="form-control input-sm uppercase">
+						class="form-control input-sm uppercase  col-sm-6">
 
 					<p />
+					</div>
 					<div>
 
 						<button type="submit" class="btn btn-success">Salva</button>
@@ -89,7 +95,7 @@
 	<script type="text/javascript"
 		src="/webjars/jquery/3.4.1/jquery.min.js"></script>
 	<script type="text/javascript"
-		src="/webjars/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		src="/webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
 
 	<script type="text/javascript" th:src="@{/js/libfuncoes.js}"></script>
 	<script	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>

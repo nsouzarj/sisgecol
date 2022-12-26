@@ -11,6 +11,7 @@ import javax.persistence.EntityTransaction
 /**
 Classe de servico comarca
  */
+
 @Service
  open class ServicoComarca {
      @Autowired
