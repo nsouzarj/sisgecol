@@ -79,13 +79,16 @@ class ControleGeral {
     @CrossOrigin
     @GetMapping("/login")
     fun loginpagina():String {
+
        return  "paginas/login"
 
     }
 
 
 
-
+    /**
+     * End point de menu
+     */
     @CrossOrigin
     //@RequestMapping("/menu", method = [RequestMethod.POST])
     @GetMapping("/menu")
@@ -97,22 +100,26 @@ class ControleGeral {
         return mv
     }
 
+    //Pega o nome do usuario onectado no momento
     fun getUserName():String{
         val auth: Authentication = SecurityContextHolder.getContext().authentication
         return auth.name
     }
+
+    //Verifica se o suaurio esta autenticado
     fun isAuth():Boolean{
         val auth: Authentication = SecurityContextHolder.getContext().authentication
         return auth.isAuthenticated
     }
 
+    //Vai para pagina de menu
     @CrossOrigin
     @GetMapping("/index")
     fun index(): String {
         return "redirect:/menu"
     }
 
-
+    //Vai para a página de erro
     @CrossOrigin
     @RequestMapping("/erro")
     fun error(): String {
@@ -120,7 +127,7 @@ class ControleGeral {
     }
 
 
-
+    //Executa o logout do usuario
     @CrossOrigin
     @RequestMapping("/logout")
     fun logout(): String {
@@ -188,7 +195,10 @@ class ControleGeral {
         mv.addObject("corr", corr)
         return mv
     }
-
+    
+    /**
+     * Autera o usuario buscando pelo iduser
+     */
     @CrossOrigin
     @RequestMapping(method = [RequestMethod.GET], value = ["/usuarios/alterar/{idusuario}"])
     fun AletaraUnicoUsuario(@PathVariable("idusuario") idusuario: Int): ModelAndView {
