@@ -1,0 +1,5 @@
+
+.textareateste:focus{
+	background-color: #FFFF66 !important;
+	border: 1px solid #F47E58 !important;
+}

@@ -1,81 +1,86 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Alterar a Solicitação</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-<meta charset="UTF-8">
-<title>Alterar a Solicitação</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
 
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"
+    />
 
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"
+    />
 
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css"
+    />
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+      crossorigin="anonymous"
+    />
+    <style>
+      .form-group {
+        flex: 1 0 auto;
+      }
 
-<!-- Popper JS -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css" />
+      #teste {
+        color: blue;
+        background-color: silver;
+        border: solid;
+      }
 
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
+      #id {
+        font: bold;
+        font-family: sans-serif;
+        background-color: silver;
+        border: solid;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <div class="card-header bg-dark">
+        <h5 style="color: white">ALTERAR A SOLCITAÇÃO</h5>
+      </div>
 
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css" />
+      <div class="card-body col-lg">
+        <br />
+        <a
+          class="btn btn-success"
+          th:href="@{'/solicitacao/'+${alterarsoliunica.idsolicitacao}}"
+          >Sair</a
+        >
+        <br />
+        <br />
+        <br />
 
+        <div class="form-group col-sm-6" th:object="${alterarsoliunica}">
+          <label id="teste" class="mr-sm-2">Id Solicitação:</label>
+          <label id="id" class="mr-sm-2" th:text="*{idsolicitacao}"></label>
+        </div>
+      </div>
+    </form>
 
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-	crossorigin="anonymous">
-<style>
-.form-group {
-	flex: 1 0 auto;
-}
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-#teste {
-	color: blue;
-	background-color: silver;
-	border: solid;
-}
-
-#id {
-	font: bold;
-	font-family: sans-serif;
-	background-color: silver;
-	border: solid;
-}
-</style>
-</head>
-<body>
-	<form>
-		<div class="card-header bg-dark">
-			<h5 style="color:white">ALTERAR A SOLCITAÇÃO</h5>
-		</div>
-
-		<div class="card-body col-lg">
-
-			<br /> <a class="btn btn-success"
-				th:href="@{'/solicitacao/'+${alterarsoliunica.idsolicitacao}}">Sair</a>
-			<br /> <br /> <br />
-
-			<div class="form-group col-sm-6" th:object="${alterarsoliunica}">
-				<label id="teste" class="mr-sm-2">Id Solicitação:</label> <label
-					id="id" class="mr-sm-2" th:text="*{idsolicitacao}"></label>
-
-			</div>
-
-
-		</div>
-	</form>
-
-
-
-</body>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  </body>
 </html>

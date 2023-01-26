@@ -27,6 +27,9 @@ class ControleGeral {
                 .allowCredentials(true).maxAge(3600)
         registry.addMapping("/static/js/**").allowedOrigins("*").allowedHeaders("*").exposedHeaders("*").allowedMethods("*")
                 .allowCredentials(true).maxAge(3600)
+        registry.addMapping("/static/css/**").allowedOrigins("*").allowedHeaders("*").exposedHeaders("*").allowedMethods("*")
+            .allowCredentials(true).maxAge(3600)
+
     }
 
     @Autowired
