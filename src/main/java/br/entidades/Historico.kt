@@ -1,11 +1,11 @@
 package br.entidades
 
+import lombok.Data
 import org.hibernate.annotations.Cascade
 import org.hibernate.annotations.CascadeType
 import java.io.Serializable
 import java.util.*
 import javax.persistence.*
-import lombok.Data
 
 @Entity
 @Table(name = "historico")

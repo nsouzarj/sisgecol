@@ -1,7 +1,7 @@
 package br.entidades
 
-import javax.persistence.*
 import lombok.Data
+import javax.persistence.*
 
 @Entity(name = "formaudnovo")
 @Data

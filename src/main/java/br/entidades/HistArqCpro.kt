@@ -1,8 +1,8 @@
 package br.entidades
 
+import lombok.Data
 import java.util.*
 import javax.persistence.*
-import lombok.Data
 
 @Entity
 @Table(name = "histarqcppro")

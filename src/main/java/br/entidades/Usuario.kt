@@ -1,10 +1,10 @@
 package br.entidades
 
+import lombok.Data
 import org.hibernate.validator.constraints.Email
 import java.io.Serializable
 import java.util.*
 import javax.persistence.*
-import lombok.Data
 
 @Entity
 @Table(name = "usuario")

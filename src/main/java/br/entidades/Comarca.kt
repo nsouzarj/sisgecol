@@ -1,8 +1,8 @@
 package br.entidades
 
+import lombok.Data
 import java.io.Serializable
 import javax.persistence.*
-import lombok.Data
 
 @Entity
 @Table(name = "comarca")

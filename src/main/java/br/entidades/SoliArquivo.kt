@@ -1,10 +1,10 @@
 package br.entidades
 
+import lombok.Data
 import java.io.Serializable
 import javax.persistence.EmbeddedId
 import javax.persistence.Entity
 import javax.persistence.Table
-import lombok.Data
 
 @Entity
 @Table(name = "arquivoanexado")
