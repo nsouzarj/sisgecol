@@ -19,9 +19,6 @@ Classe de servico comarca
      @Autowired
      var entityManager: EntityManager? = emf?.createEntityManager()
 
-
-
-
     @Override
 
     fun findAll(): List<Comarca>? {
@@ -34,9 +31,7 @@ Classe de servico comarca
      */
 
     fun buscaEstado(iduf: Int): List<Comarca?>? {
-
         return entityManager!!.createQuery("from Comarca where uf.iduf='$iduf' order by nome").resultList as? List<Comarca?>?
-
     }
     /**
     Busca uma comarca

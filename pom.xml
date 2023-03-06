@@ -18,7 +18,7 @@
 	</parent>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>18</java.version>
 		<kotlin.version>1.8.0</kotlin.version>
 		<start-class>br.geral.SisgecolApplicationKt</start-class>
 		<version.mockito>2.23.4</version.mockito>
